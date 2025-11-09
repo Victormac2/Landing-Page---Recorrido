@@ -170,7 +170,7 @@
     .study-method-container .bar2 { width: 80%; }
     .study-method-container .bar3 { width: 65%; }
   }
-  
+    
   /* ==============================
      NAVBAR TOGGLER COMPACTO
      ============================== */
@@ -187,7 +187,105 @@
   .navbar-toggler:focus {
     box-shadow: none;
   }
+  /* ==============================
+     PROGRAMAR PERO NO TANTO
+     ============================== */
+    /* ==============================
+     ESTILOS DEL COLLAGE IRREGULAR
+     ============================== */
+
+/* 1. Configuración del Contenedor GRID (Escritorio: Mínimo 992px) */
+@media (min-width: 992px) {
+  .collage-grid {
+    display: grid;
+    /* Define la estructura de 3 columnas de ancho y 3 filas de alto */
+    /* La unidad 'fr' mantiene la proporción */
+    grid-template-columns: 1fr 1.5fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 15px; /* Espacio entre las imágenes */
+    height: 600px; /* Altura fija para mantener la proporción en escritorio */
+    
+    /* Asigna nombres a las áreas para posicionar las imágenes */
+    grid-template-areas:
+      "a b b"
+      "a b b"
+      "c c d";
+  }
+
+  /* Asignación de áreas a cada elemento */
+  .item-a { grid-area: a; }
+  .item-b { grid-area: b; }
+  .item-c { grid-area: c; }
+  .item-d { grid-area: d; }
+}
+
+
+/* 2. Estilos Comunes para TODOS los Items del Collage */
+.collage-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* Propiedades para asegurar que la imagen llene el espacio asignado por Grid */
+  height: 100%;
+  width: 100%;
+}
+
+.collage-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* CRUCIAL: Mantiene la proporción de la imagen mientras llena el contenedor */
+  object-fit: cover; 
+  transition: transform 0.4s ease-out;
+}
+
+/* 3. Estilos del Overlay y Hover (Reutilizados del código anterior) */
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.overlay-text {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transform: translateY(20px);
+  transition: transform 0.4s ease-out;
+}
+
+/* Efecto HOVER */
+.collage-item:hover .overlay { opacity: 1; }
+.collage-item:hover img { transform: scale(1.05); }
+.collage-item:hover .overlay-text { transform: translateY(0); }
+
+
+/* 4. Responsividad (Móvil: Las imágenes se apilan) */
+@media (max-width: 991px) {
+  .collage-grid {
+    display: flex; /* Deshace el Grid Layout */
+    flex-direction: column; /* Apila los elementos */
+    gap: 15px;
+    height: auto;
+  }
   
+  .collage-item {
+    height: 250px; /* Altura fija para mejor vista en móvil */
+  }
+}
   /* =========================
    FOOTER UTT (replicado)
    ========================= */
