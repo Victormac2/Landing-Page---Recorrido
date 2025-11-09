@@ -190,6 +190,30 @@
   /* ==============================
      PROGRAMAR PERO NO TANTO
      ============================== */
+     /* ==============================
+     FONDO PARA LA SECCIÓN DEL COLLAGE
+     ============================== */
+#programamos-y-collage {
+  background-image: url('assets/images/fondo-home.png'); /* Ruta a tu imagen de fondo */
+  background-repeat: no-repeat; /* Para que la imagen no se repita */
+  background-size: cover; /* Ajusta la imagen para cubrir toda el área, manteniendo su proporción */
+  background-position: center bottom; /* Centra la imagen horizontalmente y la ancla a la parte inferior */
+  /* Puedes ajustar la posición según cómo quieras que se vea la curva */
+}
+
+/* Opcional: Si necesitas más espacio vertical por la forma de la curva */
+#programamos-y-collage .container {
+  padding-top: 80px; /* Ajusta el padding superior si la curva "corta" el contenido */
+  padding-bottom: 80px; /* Ajusta el padding inferior si la curva "corta" el contenido */
+}
+
+/* Consideraciones para la responsividad del fondo */
+@media (max-width: 768px) {
+  #programamos-y-collage {
+    background-size: contain; /* En móviles, podría ser mejor 'contain' para ver toda la forma */
+    background-position: center bottom; /* O ajusta según veas mejor en pantallas pequeñas */
+  }
+}
     /* ==============================
      ESTILOS DEL COLLAGE IRREGULAR
      ============================== */
