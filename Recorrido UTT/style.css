@@ -1,3 +1,45 @@
+  /* ==============================
+     logos + nav
+     ============================== */
+     .image-container img {
+        max-width: 100%;
+        height: auto;
+        width: 250px;
+        object-fit: cover;
+      }
+     .navbar-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.8rem;
+      }
+      
+      .nav-link:hover {
+        color: #000;
+      
+      }
+      
+      .nav-link {
+        position: relative;
+      }
+      
+      .nav-link:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0%;
+        content: '.';
+        color: transparent;
+        background: #089c7c;
+        height: 5px;
+        transition: all 0.3s ease;
+      }
+      
+      .nav-link:hover:after,
+      .nav-link.active:after {
+        width: 100%;
+      }
 /* ==============================
    VARIABLES Y BASE
    ============================== */
@@ -199,4 +241,45 @@
       font-size: 1.6rem;
     }
   }
+  .footer-location ul {
+    text-align: right;
+  }
   
+  .footer-logo-container img {
+    width: 300px;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+  
+  .footer-link {
+    text-decoration: none;
+  }
+  
+  .footer-link:hover {
+    text-decoration: underline;
+  }
+  
+  .social-icon {
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .social-icon:hover {
+    color: #c8c8c8;
+  }
+  
+  .btn-generate {
+    border-radius: 20px 0 0 0;
+    padding-inline: 3rem;
+    font-size: 2rem;
+    background: #8A2D40;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: fixed;  
+    bottom: 0;     
+    right: 0;    
+    z-index: 1000;    
+  }
+    
