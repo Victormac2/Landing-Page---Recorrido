@@ -1,26 +1,156 @@
-/* ======= Estilos generales ======= */
-body {
+/* ==============================
+   VARIABLES Y BASE
+   ============================== */
+   :root {
+    --verde: #089C7C;
+    --verde-dark: #077a68;
+    --guinda: #8A2D40;
+  }
+  
+  body {
+    margin: 0;
     font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
+    color: #222;
   }
   
-  /* ======= Hero Section ======= */
-  .hero {
-    background-color: #f5f5f5;
-    padding: 80px 0;
+  /* ==============================
+     CTA PRINCIPAL
+     ============================== */
+  #btn-start {
+    background: linear-gradient(90deg, var(--verde), var(--verde-dark));
+    transition: all 0.25s ease;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    color: #fff;
   }
   
-  /* ======= Badges personalizados ======= */
-  .bg-teal { background-color: #007A73; }  /* tono institucional */
-  .bg-pink { background-color: #D83367; }  /* acento moderno */
-  
-  /* ======= Footer ======= */
-  footer h6 {
-    text-transform: uppercase;
-    font-size: 0.9rem;
+  #btn-start:hover {
+    background: linear-gradient(90deg, var(--guinda), #742a39);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(8, 156, 124, 0.25);
   }
   
-  footer ul li {
-    margin-bottom: 4px;
+  /* ==============================
+     PILLS SECCIÓN (limpia y funcional)
+     ============================== */
+  
+  /* Contenedor global: ocupa todo el ancho y se alinea al borde derecho */
+  .pills-wrapper-custom {
+    position: relative;
+    width: 100vw;             /* ocupa todo el viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;    /* pegadas al borde derecho */
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos base para cada pill */
+  .pill {
+    background: linear-gradient(90deg, var(--verde), var(--verde-dark));
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-weight: 600;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    margin-bottom: 16px;
+    white-space: nowrap;
+  }
+  
+  /* Escalonado exacto en escritorio */
+  .pill1 { width: 380px; margin-right: 0; }
+  .pill2 { width: 340px; margin-right: 40px; }
+  .pill3 { width: 300px; margin-right: 80px; }
+  
+  /* Hover decorativo */
+  .pill:hover {
+    background: linear-gradient(90deg, var(--guinda), #742a39);
+    transform: translateY(-3px);
+  }
+  
+  /* ==============================
+     RESPONSIVE ADAPTATIONS
+     ============================== */
+  @media (max-width: 991px) {
+    .pills-wrapper-custom {
+      align-items: center !important; /* centradas en móvil */
+    }
+  
+    /* Las pills se adaptan en ancho y pierden escalonado */
+    .pill1 { width: 85%; margin-right: 0; }
+    .pill2 { width: 75%; margin-right: 0; }
+    .pill3 { width: 65%; margin-right: 0; }
+  }
+  
+  @media (max-width: 576px) {
+    /* En móviles muy pequeños, reduce tamaño y padding */
+    .pill1, .pill2, .pill3 {
+      width: 90%;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  
+    #btn-start {
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+    }
+  }
+  
+  /* ==============================
+     NAVBAR TOGGLER COMPACTO
+     ============================== */
+  .navbar {
+    justify-content: flex-start !important; /* pegado al borde izquierdo */
+  }
+  
+  .navbar-toggler {
+    margin-left: 1rem;      /* separación mínima del borde */
+    transform: scale(0.8);  /* más compacto */
+    border: none;
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+  
+  /* ==============================
+     AJUSTES DE DETALLE
+     ============================== */
+  
+  /* Asegura que el mockup conserve su sombra y bordes */
+  .mockup-img {
+    border-radius: 28px;
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.18);
+    transform: translateY(6px);
+  }
+  
+  /* Curva decorativa de galería */
+  .decor-curve {
+    position: absolute;
+    right: -40px;
+    top: 40px;
+    width: 420px;
+    height: 220px;
+    pointer-events: none;
+    opacity: 0.95;
+  }
+  
+  /* Oculta la curva en pantallas pequeñas */
+  @media (max-width: 991px) {
+    .decor-curve { display: none; }
+  }
+  
+  /* Corrige visibilidad de links en el footer */
+  footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
   }
   
