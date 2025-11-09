@@ -1,1 +1,345 @@
-hu
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recorrido Virtual UTT — Landing</title>
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Fuente Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Íconos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7af13692c6.js" crossorigin="anonymous"></script>
+<style>
+    /* Mostrar dropdown al pasar el cursor */
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; /* evita salto feo */
+    }
+    .dropdown-menu-dark{
+      --bs-dropdown-bg: #8a2d40;
+    }
+    .dropdown-item.active, .dropdown-item:active {
+      color: var(--bs-dropdown-link-active-color);
+      text-decoration: none;
+      background-color: #009d7d;;
+    }
+  </style>
+</head>
+
+<body class="bg-white" style="font-family:'Poppins', sans-serif; color:#222;">
+
+  <!-- HEADER institucional (logos + nav) -->
+  <div class="container d-flex justify-content-between p-4">
+    <div class="image-container">
+        <img src="./assets/images/header-img1.png" alt="Imagen 1">
+    </div>
+    <div class="image-container mx-auto">
+        <img src="./assets/images/header-img2.png" alt="Imagen 2">
+    </div>
+    <div class="image-container mr-auto ml-5">
+        <img src="./assets/images/header-img3.png" alt="Imagen 3">
+    </div>
+</div>
+
+<nav class="container navbar navbar-expand-lg" id="navbar" style="background: #fff;">
+<div class="container-fluid">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+  aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size:0.75rem;">
+  <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+      <a class="nav-link active" href="https://utt.edu.mx/">Inicio</a>
+    </li>      
+    <li class="nav-item dropdown">
+      <div style="cursor: pointer;">Nuestra universidad</div>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item" href="https://utt.edu.mx/historia.php">Historia UTT</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/filosofia%20institucional.php">Filosofía Institucional</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/ResponsabilidadSocial.php">Responsabilidad Social</a></li>            
+        <li><a class="dropdown-item" href="https://utt.edu.mx/conexionUni.php">Conexión Universitaria</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/Transparencia.php">Transparencia Universitaria</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/mascota.php">Mascota</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/directorio.php">Directorio</a></li>
+        <li><a class="dropdown-item" href="https://www.utt.edu.mx/CalendarioEscolar/">Calendario</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/ubicacion.php">Ubicación</a></li>
+        <li><a class="dropdown-item" href="https://mail.google.com/a/utt.edu.mx" target="_blank">Correo UTT</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/Formatos.php">Logos y Formatos</a></li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown">
+      <div style="cursor: pointer;">Oferta Educativa</div>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item" href="https://utt.edu.mx/modeloEducativo.php">Modelo Educativo</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/posgrado.php">Posgrado</a></li>
+      <li><a class="dropdown-item" href="https://www.utt.edu.mx/carrerasutt/">Carreras</a></li>
+    </ul>
+    </li>
+    <li class="nav-item dropdown">
+      <div style="cursor: pointer;">Trámites alumnos</div>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item" href="https://utt.edu.mx/liberacion.php">Liberación de egresados</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/archivos/SERVICIOS_ESCOLAR.pdf">Servicios Escolares</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/imss.php">IMSS Digital Para Alumnos</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/admisiones.php">Ingreso</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/becas.php">Becas</a></li>
+        <li><a class="dropdown-item" href="https://utt.edu.mx/req_tit.php">Requisitos De Titulación</a></li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown">
+      Vinculación
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item" href="https://utt.edu.mx/PracticasyEstadias.php">Prácticas y Estadías</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/coordinacionEgresados.php">Seguimientos De Egresados</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/form_bolsa_trabajo.php">Bolsa De Trabajo</a></li>
+      <li><a class="dropdown-item" href="https://cursosvinculacion.utt.edu.mx/" target="_blank">Cursos (Ficha de Pago)</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/conmul.php">Congreso CONMUL</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/Internacionalizacion.php">Internacionalización</a></li>
+    </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://cin.utt.edu.mx/" target="_blank">Centro Integral De Negocios</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://utt.edu.mx/Servicios.php">Servicios</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link" href="../access.php">Accesos</a>
+      <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item" href="https://moodle.uttcampus.edu.mx/" target="_blank">Moodle UTT</a></li>
+      <li><a class="dropdown-item" href="https://posgrado.uttcampus.edu.mx/login/index.php" target="_blank">Moodle Posgrado</a></li>
+      <li><a class="dropdown-item" href="http://187.190.56.53/qdoc/Users/Login?ReturnUrl=%2fqaction%2fUsers%2fLogout" target="_blank">QDoc</a></li>
+      <li><a class="dropdown-item" href="http://187.190.56.53/qaction/Users/Login?ReturnUrl=%2fqaction%2fUsers%2fLogout" target="_blank">QAction</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/repositorio/">Repositorio</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/janium.html" target="_blank">Catálogo en Línea</a></li>
+      <li><a class="dropdown-item" href="https://cinn.utt.edu.mx" target="_blank">CIN</a></li>
+      <li><a class="dropdown-item" href="https://planevaluacion.utt.edu.mx/" target="_blank">Plat. De Evaluación</a></li>
+      <li><a class="dropdown-item" href="https://h_junta_directiva.utt.edu.mx/" target="_blank">H. Junta Directiva</a></li>
+      <li><a class="dropdown-item" href="http://climaorg.utt.edu.mx/" target="_blank">Clima Organizacional</a></li>
+      <li><a class="dropdown-item" href="https://mx.televisioneducativa.gob.mx/" target="_blank">México X</a></li>
+      <li><a class="dropdown-item" href="https://www.uttorreon.mx/" target="_blank">SIAAUTT WEB</a></li>
+      <li><a class="dropdown-item" href="https://smpoa.utt.edu.mx/" target="_blank">METAS</a></li>
+      <li><a class="dropdown-item" href="https://sidqcs.tramitescoahuila.gob.mx/sidqcs/?id=M0063" target="_blank">QUEJANET</a></li>
+      <li><a class="dropdown-item" href="https://www.coahuilatransparente.gob.mx/articulos/ip_dependencia.cfm?dep=UTT" target="_blank">Coahuila Transparente</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/archivos/DeclaracionPrivacidadUTT.pdf">Declaración de privacidad</a></li>
+      <li><a class="dropdown-item" href="https://utt.edu.mx/contraloriaSocial.php">Contraloría Social</a></li>
+    </ul>
+    </li>
+  </ul>
+</div>
+</div>
+</nav>
+
+
+  <!-- HERO -->
+  <section class="py-5" style="background:#dcdcdc;">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6 text-center text-lg-start">
+          <p class="text-muted mb-1">Conoce nuestra universidad</p>
+          <h1 class="fw-bold fs-2 mb-3">desde la palma de tu mano</h1>
+          <p class="mb-4">
+            Descubre nuestras instalaciones, aulas, laboratorios y espacios de innovación a través de un recorrido virtual completamente interactivo. Vive la experiencia UTT en 360°, desarrollada por estudiantes de Entornos Virtuales y Negocios Digitales.
+          </p>
+          <a href="#" id="btn-start" class="btn text-white fw-semibold px-4 py-2 rounded-pill shadow-sm">
+            Inicia Recorrido
+          </a>
+          <p class="small text-muted mt-2">Descúbrela, no necesitas instalar nada*</p>
+        </div>
+
+        <div class="col-lg-6">
+          <img src="assets/images/header.jpeg" class="img-fluid rounded-3 shadow-sm" alt="Campus UTT">
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- ========================= EXPERIENCIA DIGITAL ========================= -->
+<section class="py-5 bg-white" id="experiencia">
+    <div class="container-fluid px-0">
+      <div class="row align-items-center g-5 flex-column-reverse flex-lg-row">
+  
+        <!-- MOCKUP (primero en móvil también) -->
+        <div class="col-lg-5 text-center order-1 order-lg-1">
+          <img src="assets/mockup-iphone.png" class="img-fluid rounded-4 shadow-lg" alt="Mockup del recorrido">
+        </div>
+  
+        <!-- TEXTO Y PILAS -->
+        <div class="col-lg-7 order-2 order-lg-2">
+          <h2 class="fw-bold mb-4 ps-3 ps-lg-5">Una experiencia digital</h2>
+  
+          <!-- NUEVA ESTRUCTURA DE PILAS -->
+          <div class="study-method-container">
+            <h1 class="bar bar1"><b>100%</b><span>COMPATIBLE</span></h1>
+            <h1 class="bar bar2"><b>360°</b><span>INTERACTIVO</span></h1>
+            <h1 class="bar bar3"><b>PWA</b><span>INSTALABLE</span></h1>
+          </div>
+  
+          <div class="description px-3 px-lg-5 mt-4">
+            <p>
+              El recorrido virtual de la Universidad Tecnológica de Torreón fue desarrollado por alumnos de la carrera de Entornos Virtuales y Negocios Digitales como parte de un proyecto integrador.
+            </p>
+            <p>
+              Este proyecto refleja la capacidad de nuestros estudiantes para aplicar herramientas de vanguardia en entornos reales, mostrando el potencial que tiene la innovación tecnológica dentro de nuestra universidad.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- PROGRAMAR PERO NO TANTO -->
+  <section id="programamos-y-collage" class="py-5">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <h2 class="fw-bold fs-1" style="color: #222;">Programamos pero no tanto</h2>
+        <p class="lead text-muted">
+          Porque detrás del código, también diseñamos experiencias.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="collage-grid">
+          
+          <div class="collage-item item-a" data-text="Título o descripción de la Imagen 1">
+            <img src="ruta/a/tu/imagen1.jpg" alt="Descripción 1">
+            <div class="overlay" style="background-color: rgba(8, 156, 124, 0.9);">
+              <p class="overlay-text"></p>
+            </div>
+          </div>
+          
+          <div class="collage-item item-b" data-text="Título o descripción de la Imagen 2">
+            <img src="ruta/a/tu/imagen2.jpg" alt="Descripción 2">
+            <div class="overlay" style="background-color: rgba(8, 156, 124, 0.9);">
+              <p class="overlay-text"></p>
+            </div>
+          </div>
+
+          <div class="collage-item item-c" data-text="Título o descripción de la Imagen 3">
+            <img src="ruta/a/tu/imagen3.jpg" alt="Descripción 3">
+            <div class="overlay" style="background-color: rgba(8, 156, 124, 0.9);">
+              <p class="overlay-text"></p>
+            </div>
+          </div>
+          
+          <div class="collage-item item-d" data-text="Título o descripción de la Imagen 4">
+            <img src="ruta/a/tu/imagen4.jpg" alt="Descripción 4">
+            <div class="overlay" style="background-color: rgba(8, 156, 124, 0.9);">
+              <p class="overlay-text"></p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <p class="small text-muted mb-0">
+          En Entornos Virtuales y Negocios Digitales, la práctica forma parte del aprendizaje.
+<br>Cada proyecto, prototipo o recorrido que realizamos es una oportunidad para innovar, experimentar y generar impacto. <br>
+En esta galería te mostramos algunos ejemplos del trabajo creativo y técnico que nuestros estudiantes desarrollan día a día.
+        </p>
+      </div>
+    </div>
+    
+  </div>
+</section>
+  <!-- ========================= FOOTER / LINKS DE APOYO ========================= -->
+  <footer class="text-center" style="background: #089c7c">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Form -->
+      <section class="">
+          <!--Grid row-->
+          <div class="row d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-auto footer-section footer-section-left">
+                <h5 class="text-uppercase text-white text-start">LINKS DE AYUDA</h5>
+                <br>
+                <ul class="list-unstyled mb-0 text-start">
+                    <li><a href="https://utt.edu.mx/" class="footer-link text-white">Inicio</a></li>
+                    <li><a href="https://mail.google.com/a/utt.edu.mx" target="_blank" class="footer-link text-white">Correo UTT</a></li>
+                    <li><a href="https://utt.edu.mx/admisiones.php" class="footer-link text-white">Admisión</a></li>
+                    <li><a href="https://utt.edu.mx/becas.php" class="footer-link text-white">Becas</a></li>
+                    <li><a href="https://utt.edu.mx/req_tit.php" class="footer-link text-white">Requisitos de titulación</a></li>
+                    <li><a href="https://uttorreon.mx/" target="_blank" class="footer-link text-white">SIAAUTT web</a></li>
+                    <li><a href="https://utt.edu.mx/Transparencia.php" class="footer-link text-white">Transparencia</a></li>
+                </ul>
+            </div>
+            <!--Grid column-->
+  
+            <!--Grid column-->
+            <div class="col-md-5 col-12 footer-section">
+              <!-- Email input -->
+              <div class="footer-logo-container">
+                    <img src="./assets/images/UTT_logo.png" alt="">
+                </div>
+                <ul class="list-unstyled mb-0 d-flex gap-4 justify-content-center align-items-center">
+                    <li>
+                      <a href="https://www.facebook.com/UTToficial" target="_blank" class="text-white text-decoration-none"><i class="fa-brands fa-facebook social-icon"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.instagram.com/uttorreon?fbclid=IwZXh0bgNhZW0CMTAAAR3UAawNzvBwt8wlGqBqvMaGsYxf6Et7jtcWCb4PkZFgg7m_XHDCbXNbiJc_aem_gcCG3eH9VcVgO08TcNaq_w" target="_blank" class="text-white text-decoration-none"><i class="fa-brands fa-instagram social-icon"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.tiktok.com/@uttorreon" target="_blank" class="text-white text-decoration-none"><i class="fa-brands fa-tiktok social-icon"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.youtube.com/@universidadtecnologicadeto5981" target="_blank" class="text-white text-decoration-none"><i class="fa-brands fa-youtube social-icon"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+  
+            <!--Grid column-->
+            <div class="col-auto footer-location footer-section footer-section-right">
+              <h5 class="text-uppercase text-white mb-0 text-end">UBICACIÓN</h5>
+              <br>
+              <ul class="list-unstyled mb-0">
+                <li class="text-white">
+                  <a style="text-decoration:none; color:#fff;" target="_blank" href="https://www.google.com.mx/maps/place/Universidad+Tecnol%C3%B3gica+de+Torre%C3%B3n/@25.5325673,-103.3242556,17z/data=!3m1!4b1!4m6!3m5!1s0x868fc48455d823cb:0xc18fad7b464487e4!8m2!3d25.5325625!4d-103.3216807!16s%2Fg%2F11_rjr8jd?entry=ttu" >
+                    Universidad Tecnológica de Torreón, Carretera <br>
+                  📍 Torreón-Matamoros Km. 10 Ejido El Águila, <br>
+                  Municipio de Torreón, Coah.
+                  </a>
+                </li>
+                <br>
+                <li class="text-white">
+                  📞 Teléfono conmutador: <a href="tel:+528717297400" class="text-decoration-none text-white">871 729 7400</a>
+                </li>
+            </ul>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+      </section>
+      <!-- Section: Form -->
+    </div>
+    <!-- Grid container -->
+
+    <div class="text-center pt-3 justify-content-end align-items-end d-flex">
+      <a target="_blank" href="https://uttorreon.mx/generarficha" class="btn mb-0 text-uppercase text-white fw-bold btn-generate" style="background: #8A2D40;">
+        Genera tu ficha
+      </a>
+    </div>
+
+  </footer>  
+
+  <!-- Bootstrap + script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
