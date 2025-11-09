@@ -1,6 +1,5 @@
 // script.js — control simple del botón y visibilidad del header
 const showNavbar = true; // poner false si se quiere ocultar el header para demo
-
 document.addEventListener('DOMContentLoaded', () => {
   if (!showNavbar) {
     const header = document.querySelector('#navbarDemo');
@@ -36,8 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     };
-  
-    navLinks.forEach((link) => {
+        navLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
         navLinks.forEach((navLink) => navLink.classList.remove("active"));
         link.classList.add("active");
@@ -47,3 +45,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Inicializa el enlace activo basado en la URL actual
     updateActiveLink();
   });
+
+  //PROGRAMAR PERO NO TANTO 
+  document.addEventListener('DOMContentLoaded', () => {
+  const collageItems = document.querySelectorAll('.collage-item');
+
+  collageItems.forEach(item => {
+    const textToShow = item.getAttribute('data-text');
+    const overlayTextElement = item.querySelector('.overlay-text');
+    
+    // Inserta el texto en el elemento del overlay
+    if (overlayTextElement) {
+      overlayTextElement.textContent = textToShow;
+    }
+  });
+});
