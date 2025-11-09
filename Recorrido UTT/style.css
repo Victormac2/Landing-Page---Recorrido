@@ -310,6 +310,25 @@
     height: 250px; /* Altura fija para mejor vista en móvil */
   }
 }
+/* ==============================
+     ESTILOS DEL BOTÓN CTA DEL COLLAGE (.custom-btn-green)
+     ============================== */
+
+.custom-btn-green {
+  /* Aplica el mismo degradado verde que el botón principal */
+  background: linear-gradient(90deg, var(--verde), var(--verde-dark)) !important;
+  transition: all 0.25s ease;
+  border: none !important;
+  color: #fff !important; 
+}
+  
+.custom-btn-green:hover {
+  /* Cambia el degradado al pasar el mouse (Guinda/Verde más oscuro) */
+  background: linear-gradient(90deg, var(--verde-dark), var(--guinda)) !important;
+  transform: translateY(-3px);
+  /* Usa la misma sombra del botón principal */
+  box-shadow: 0 10px 24px rgba(8, 156, 124, 0.25) !important;
+}
   /* =========================
    FOOTER UTT (replicado)
    ========================= */
