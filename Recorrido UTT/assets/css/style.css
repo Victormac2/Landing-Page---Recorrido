@@ -1,0 +1,59 @@
+/* ==============================
+     ESTILOS DEL PLAN DE ESTUDIOS
+     ============================== */
+
+/* Contenedor de las tarjetas de materia */
+.subject-card {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.subject-title {
+    color: var(--verde-dark); /* Color verde oscuro para títulos */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.module-link {
+    color: var(--verde); /* Enlaces en el color verde principal */
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.module-link:hover {
+    color: var(--guinda); /* Hover al color Guinda */
+}
+
+/* Estilos de las PÍLDORAS (Tabs) */
+.study-plan-pills .nav-link {
+    border-radius: 50rem !important; 
+    border: 1px solid var(--verde);
+    color: var(--verde);
+    margin: 5px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+/* Píldora Activa */
+.study-plan-pills .nav-link.active {
+    /* Aplicar el degradado del botón CTA */
+    background: linear-gradient(90deg, var(--verde), var(--verde-dark)) !important;
+    color: white !important;
+    border-color: var(--verde-dark) !important;
+    box-shadow: 0 4px 10px rgba(8, 156, 124, 0.3);
+}
+
+/* Píldora Hover */
+.study-plan-pills .nav-link:not(.active):hover {
+    background-color: #f0f0f0;
+    color: var(--verde-dark);
+}
