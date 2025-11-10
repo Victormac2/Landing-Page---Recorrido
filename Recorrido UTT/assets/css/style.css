@@ -1,8 +1,18 @@
-/* ==============================
-     ESTILOS DEL PLAN DE ESTUDIOS
-     ============================== */
+/* =========================================================
+     ESTILOS DEL PLAN DE ESTUDIOS (COMPLEMENTO para evnd.html)
+     ========================================================= */
 
-/* Contenedor de las tarjetas de materia */
+/* COLORES BASE (Asegúrate de que tus variables estén definidas o añádelas aquí) */
+/* :root {
+    --verde: #089C7C;
+    --verde-dark: #077C63;
+    --guinda: #9C27B0;
+    --guinda-dark: #6A1B9A;
+} */
+
+
+/* --- Estilos de las Tarjetas de Materias (TSU y ING) --- */
+
 .subject-card {
     border: 1px solid #eee;
     border-radius: 12px;
@@ -16,7 +26,7 @@
 }
 
 .subject-title {
-    color: var(--verde-dark); /* Color verde oscuro para títulos */
+    color: #222; 
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
@@ -33,27 +43,70 @@
     color: var(--guinda); /* Hover al color Guinda */
 }
 
-/* Estilos de las PÍLDORAS (Tabs) */
-.study-plan-pills .nav-link {
-    border-radius: 50rem !important; 
-    border: 1px solid var(--verde);
-    color: var(--verde);
-    margin: 5px;
-    font-weight: 600;
-    transition: all 0.3s;
+/* Destacado de Proyectos/Optativas (TSU) */
+.subject-card.subject-highlight-tsu {
+    border: 2px solid var(--verde-dark);
+    background-color: #e6f7f3; /* Fondo verde claro */
+}
+.subject-card.subject-highlight-tsu .subject-title {
+    color: var(--verde-dark);
 }
 
-/* Píldora Activa */
-.study-plan-pills .nav-link.active {
-    /* Aplicar el degradado del botón CTA */
+/* Destacado de Proyectos/Optativas (INGENIERÍA) */
+.subject-card.subject-highlight-ing {
+    border: 2px solid var(--guinda-dark);
+    background-color: #f7e6fa; /* Fondo morado claro */
+}
+.subject-card.subject-highlight-ing .subject-title {
+    color: var(--guinda-dark);
+}
+
+/* Estilos de las Tarjetas de Estadía */
+.estadia-card-tsu {
+    border-color: var(--verde) !important;
+    background-color: #e6f7f3;
+}
+.estadia-card-ing {
+    border-color: var(--guinda) !important;
+    background-color: #f7e6fa;
+}
+
+
+/* --- Estilos de las PÍLDORAS (Tabs) --- */
+
+.study-plan-pills .nav-link {
+    border-radius: 50rem !important; 
+    margin: 3px; /* Menos margen para que quepan 10 */
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 0.85rem; /* Letra más pequeña para que quepan */
+}
+
+/* TSU PÍLDORAS (VERDE) */
+.study-plan-pills .tsu-pill {
+    border: 1px solid var(--verde);
+    color: var(--verde);
+}
+.study-plan-pills .tsu-pill.active {
     background: linear-gradient(90deg, var(--verde), var(--verde-dark)) !important;
     color: white !important;
     border-color: var(--verde-dark) !important;
-    box-shadow: 0 4px 10px rgba(8, 156, 124, 0.3);
+    box-shadow: 0 4px 8px rgba(8, 156, 124, 0.3);
 }
 
-/* Píldora Hover */
+/* INGENIERÍA PÍLDORAS (GUINDA) */
+.study-plan-pills .ing-pill {
+    border: 1px solid var(--guinda);
+    color: var(--guinda);
+}
+.study-plan-pills .ing-pill.active {
+    background: linear-gradient(90deg, var(--guinda), var(--guinda-dark)) !important;
+    color: white !important;
+    border-color: var(--guinda-dark) !important;
+    box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3);
+}
+
+/* Píldora Hover General */
 .study-plan-pills .nav-link:not(.active):hover {
     background-color: #f0f0f0;
-    color: var(--verde-dark);
 }
