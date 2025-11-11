@@ -11,6 +11,7 @@
 /* ==========================================================
    🧱 VARIABLES DE COLOR PRINCIPALES (PALABRALES)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
    ========================================================== */
 :root {
   --verde: #089C7C;        /* Verde institucional principal */
@@ -18,6 +19,8 @@
   --guinda: #8A2D40;       /* Guinda institucional secundario */
   --texto: #222;           /* Texto base oscuro */
 =======
+=======
+>>>>>>> Stashed changes
    ----------------------------------------------------------
    Se definen como variables globales dentro del selector :root,
    permitiendo mantener una paleta coherente con la landing institucional.
@@ -27,12 +30,16 @@
   --verde-dark: #077a68;   /* Variante más oscura para degradados y fondos de contraste */
   --guinda: #8A2D40;       /* Color guinda complementario, usado en hover y acentos */
   --texto: #222;           /* Color base de tipografía (gris oscuro legible) */
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
 
 /* ==========================================================
    🧰 RESET Y BASE TIPOGRÁFICA
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
    ========================================================== */
 body {
@@ -327,6 +334,44 @@ footer ul li {
   border: none;                  /* Sin borde predeterminado */
 }
 
+=======
+   ----------------------------------------------------------
+   Define el aspecto general de la página:
+   - Tipografía Poppins.
+   - Color base del texto.
+   - Transiciones globales.
+   ========================================================== */
+body {
+  margin: 0; /* Elimina márgenes por defecto del navegador */
+  font-family: 'Poppins', sans-serif; /* Fuente institucional moderna */
+  color: var(--texto); /* Aplica color de texto definido en variables */
+  background-color: #fff; /* Fondo blanco neutro */
+  line-height: 1.6; /* Altura de línea para lectura cómoda */
+}
+
+/* Aplica transición uniforme a todos los elementos para suavizar interacciones */
+* {
+  transition: all 0.25s ease;
+}
+
+
+/* ==========================================================
+   🟩 NAV PILLS — BOTONES DE TSU / INGENIERÍA
+   ----------------------------------------------------------
+   Define el comportamiento visual de las pestañas (pills)
+   que alternan entre los cuatrimestres.
+   ========================================================== */
+.nav-pills .nav-link {
+  background-color: #f4f4f4;     /* Fondo gris claro en estado inactivo */
+  color: var(--texto);           /* Texto oscuro para contraste */
+  font-weight: 500;              /* Peso medio para visibilidad */
+  border-radius: 999px;          /* Bordes completamente redondeados (pill) */
+  padding: 10px 22px;            /* Espaciado interno equilibrado */
+  transition: all 0.25s ease;    /* Transición suave entre estados */
+  border: none;                  /* Sin borde predeterminado */
+}
+
+>>>>>>> Stashed changes
 /* Estado ACTIVO — replica el estilo del botón principal (CTA) en la landing */
 .nav-pills .nav-link.active {
   background: linear-gradient(90deg, var(--verde), var(--verde-dark)); /* Degradado verde institucional */
@@ -595,4 +640,7 @@ footer ul li {
   background-color: rgba(8, 156, 124, 0.15);
   transition: all 0.3s ease;
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
