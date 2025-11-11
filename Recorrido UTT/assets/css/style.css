@@ -10,17 +10,30 @@
 
 /* ==========================================================
    🧱 VARIABLES DE COLOR PRINCIPALES (PALABRALES)
+<<<<<<< Updated upstream
    ========================================================== */
 :root {
   --verde: #089C7C;        /* Verde institucional principal */
   --verde-dark: #077a68;   /* Verde más oscuro para degradados */
   --guinda: #8A2D40;       /* Guinda institucional secundario */
   --texto: #222;           /* Texto base oscuro */
+=======
+   ----------------------------------------------------------
+   Se definen como variables globales dentro del selector :root,
+   permitiendo mantener una paleta coherente con la landing institucional.
+   ========================================================== */
+:root {
+  --verde: #089C7C;        /* Verde institucional principal usado en botones, bordes y acentos */
+  --verde-dark: #077a68;   /* Variante más oscura para degradados y fondos de contraste */
+  --guinda: #8A2D40;       /* Color guinda complementario, usado en hover y acentos */
+  --texto: #222;           /* Color base de tipografía (gris oscuro legible) */
+>>>>>>> Stashed changes
 }
 
 
 /* ==========================================================
    🧰 RESET Y BASE TIPOGRÁFICA
+<<<<<<< Updated upstream
    ========================================================== */
 body {
   margin: 0;
@@ -32,11 +45,31 @@ body {
 
 * {
   transition: all 0.25s ease; /* Transiciones suaves globales */
+=======
+   ----------------------------------------------------------
+   Define el aspecto general de la página:
+   - Tipografía Poppins.
+   - Color base del texto.
+   - Transiciones globales.
+   ========================================================== */
+body {
+  margin: 0; /* Elimina márgenes por defecto del navegador */
+  font-family: 'Poppins', sans-serif; /* Fuente institucional moderna */
+  color: var(--texto); /* Aplica color de texto definido en variables */
+  background-color: #fff; /* Fondo blanco neutro */
+  line-height: 1.6; /* Altura de línea para lectura cómoda */
+}
+
+/* Aplica transición uniforme a todos los elementos para suavizar interacciones */
+* {
+  transition: all 0.25s ease;
+>>>>>>> Stashed changes
 }
 
 
 /* ==========================================================
    🟩 NAV PILLS — BOTONES DE TSU / INGENIERÍA
+<<<<<<< Updated upstream
    ========================================================== */
 .nav-pills .nav-link {
   background-color: #f4f4f4;     /* Fondo neutro para los botones inactivos */
@@ -279,3 +312,287 @@ footer ul li {
   transition: all 0.3s ease;
 }
 
+=======
+   ----------------------------------------------------------
+   Define el comportamiento visual de las pestañas (pills)
+   que alternan entre los cuatrimestres.
+   ========================================================== */
+.nav-pills .nav-link {
+  background-color: #f4f4f4;     /* Fondo gris claro en estado inactivo */
+  color: var(--texto);           /* Texto oscuro para contraste */
+  font-weight: 500;              /* Peso medio para visibilidad */
+  border-radius: 999px;          /* Bordes completamente redondeados (pill) */
+  padding: 10px 22px;            /* Espaciado interno equilibrado */
+  transition: all 0.25s ease;    /* Transición suave entre estados */
+  border: none;                  /* Sin borde predeterminado */
+}
+
+/* Estado ACTIVO — replica el estilo del botón principal (CTA) en la landing */
+.nav-pills .nav-link.active {
+  background: linear-gradient(90deg, var(--verde), var(--verde-dark)); /* Degradado verde institucional */
+  color: #fff; /* Texto blanco para máximo contraste */
+  font-weight: 600; /* Peso mayor para énfasis */
+  box-shadow: 0 10px 24px rgba(8,156,124,0.18); /* Sombra verde sutil */
+}
+
+/* Hover decorativo en estado activo — transiciona a guinda */
+.nav-pills .nav-link.active:hover {
+  background: linear-gradient(90deg, var(--guinda), #742a39);
+}
+
+/* Hover en botones inactivos — resalta el cambio */
+.nav-pills .nav-link:hover {
+  background-color: #eaeaea;
+}
+
+
+/* ==========================================================
+   💼 TARJETAS DE CUATRIMESTRE (CARDS)
+   ----------------------------------------------------------
+   Estilo para las tarjetas de materias, cuadros de contacto y otros recuadros.
+   ========================================================== */
+.card {
+  border-radius: 12px; /* Bordes redondeados para uniformidad visual */
+  border: 1px solid rgba(8,156,124,0.15); /* Línea verde translúcida */
+  box-shadow: 0 8px 18px rgba(8,156,124,0.15); /* Sombra leve verde */
+  transition: all 0.25s ease; /* Suaviza efecto de hover */
+}
+
+/* Hover con efecto flotante: sombra más profunda y ligero desplazamiento */
+.card:hover {
+  box-shadow: 0 10px 28px rgba(8,156,124,0.25);
+  transform: translateY(-4px);
+}
+
+/* Título dentro de las tarjetas */
+.card-title {
+  color: var(--verde-dark); /* Verde oscuro institucional */
+  font-weight: 600;         /* Peso seminegrita */
+  margin-bottom: 0.5rem;    /* Separación inferior */
+}
+
+/* Texto interno de las tarjetas (por ejemplo, descripciones o datos) */
+.card-text {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+
+/* ==========================================================
+   🧠 ENCABEZADOS Y TÍTULOS DE SECCIÓN
+   ----------------------------------------------------------
+   Uniformiza el peso y color de los encabezados principales.
+   ========================================================== */
+h1, h2, .section-title {
+  font-weight: 700;           /* Negrita fuerte */
+  color: var(--verde-dark);   /* Verde oscuro institucional */
+  margin-bottom: 1rem;        /* Espaciado inferior */
+}
+
+h3, h4 {
+  font-weight: 600;           /* Negrita media */
+  color: var(--texto);        /* Gris oscuro para jerarquía menor */
+}
+
+
+/* ==========================================================
+   🟢 BOTONES GENERALES (REEMPLAZO DE .btn-primary)
+   ----------------------------------------------------------
+   Mantiene coherencia visual con los botones CTA de la landing.
+   ========================================================== */
+.btn-primary {
+  background: linear-gradient(90deg, var(--verde), var(--verde-dark)); /* Degradado verde institucional */
+  border: none; /* Sin borde adicional */
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(8,156,124,0.18); /* Sombra institucional */
+  transition: all .25s ease;
+}
+
+/* Hover — cambia a guinda para resaltar interacción */
+.btn-primary:hover {
+  background: linear-gradient(90deg, var(--guinda), #742a39);
+  transform: translateY(-3px); /* Efecto flotante leve */
+  box-shadow: 0 14px 28px rgba(8,156,124,0.25);
+}
+
+
+/* ==========================================================
+   🖼️ CONTENEDORES Y SECCIONES
+   ----------------------------------------------------------
+   Define márgenes verticales, alternancia de color y ancho máximo.
+   ========================================================== */
+section {
+  padding: 60px 0; /* Margen vertical uniforme */
+}
+
+/* Alternancia de color entre secciones pares */
+section:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Limita el ancho máximo de contenedores principales */
+.container {
+  max-width: 1200px;
+}
+
+
+/* ==========================================================
+   🧩 FOOTER — MISMO DISEÑO QUE LANDING
+   ----------------------------------------------------------
+   Replica el degradado y estilo del pie de página institucional.
+   ========================================================== */
+footer {
+  background: linear-gradient(180deg, var(--verde), var(--verde-dark));
+  color: #fff;
+  padding: 2.5rem 0;
+}
+
+footer h6 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Enlaces blancos con transición de opacidad */
+footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity .25s ease;
+}
+
+/* Efecto hover de opacidad */
+footer a:hover {
+  opacity: 0.85;
+}
+
+/* Limpieza visual en listas dentro del footer */
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 6px;
+}
+
+
+/* ==========================================================
+   📱 RESPONSIVIDAD Y AJUSTES MÓVILES
+   ----------------------------------------------------------
+   Ajustes visuales para pantallas pequeñas.
+   ========================================================== */
+@media (max-width: 991px) {
+  /* Botones más compactos en tablets */
+  .nav-pills .nav-link {
+    font-size: 0.95rem;
+    padding: 8px 18px;
+  }
+
+  /* Separación adicional entre tarjetas */
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  /* Títulos centrados para evitar desbalance visual */
+  h1, h2, .section-title {
+    text-align: center;
+  }
+}
+
+/* Dispositivos móviles pequeños (smartphones) */
+@media (max-width: 576px) {
+  .btn-primary {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+  }
+  footer {
+    text-align: center;
+  }
+}
+
+
+/* ==========================================================
+   🔍 CLASES DE APOYO VISUAL (OPCIONALES)
+   ----------------------------------------------------------
+   Utilizadas para reforzar color, borde y sombra en componentes.
+   ========================================================== */
+.text-verde { color: var(--verde); }                      /* Texto verde institucional */
+.bg-verde { background-color: var(--verde); color: #fff; } /* Fondo verde con texto blanco */
+.border-verde { border-color: var(--verde) !important; }   /* Borde verde (prioridad alta) */
+.shadow-verde { box-shadow: 0 6px 18px rgba(8,156,124,0.25) !important; } /* Sombra verde */
+
+/* ==========================================================
+   === ESTILO DE LAS NOTAS O RECUADROS ===
+   ----------------------------------------------------------
+   Define el recuadro verde informativo (por ejemplo: nota de nivel TSU/Ingeniería).
+   ========================================================== */
+.note-box {
+  border: 2px solid #089C7C; /* Borde verde institucional */
+  background-color: rgba(8, 156, 124, 0.08); /* Fondo verde claro translúcido */
+  border-radius: 10px; /* Esquinas redondeadas suaves */
+  padding: 1rem 1.25rem;
+  color: #222; /* Texto oscuro para contraste */
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
+}
+
+
+/* ==========================================================
+   === ACORDEÓN: BOTONES COLAPSABLES (Misión, Visión, etc.) ===
+   ----------------------------------------------------------
+   Personaliza los botones de los acordeones con colores institucionales.
+   ========================================================== */
+.accordion-button {
+  background-color: rgba(8, 156, 124, 0.1); /* Verde translúcido */
+  color: #222;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Estado hover/focus: verde sólido */
+.accordion-button:hover,
+.accordion-button:focus {
+  background-color: #089C7C;
+  color: #fff;
+}
+
+/* Estado expandido (sin clase 'collapsed'): cambia a guinda */
+.accordion-button:not(.collapsed) {
+  background-color: #8A2D40;
+  color: #fff;
+  box-shadow: none;
+}
+
+
+/* ==========================================================
+   === CAJA DE NOTA PERSONALIZADA ===
+   ----------------------------------------------------------
+   Variante extendida del recuadro informativo, con ícono
+   y efecto de hover reforzado.
+   ========================================================== */
+.note-box {
+  border: 2px solid #089C7C; /* Borde verde */
+  background-color: rgba(8, 156, 124, 0.08); /* Fondo translúcido */
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  color: #222;
+  font-size: 0.95rem;
+  text-align: left; /* Alineación natural del texto */
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Ícono informativo dentro de las notas */
+.note-box i {
+  color: #089C7C;
+  margin-right: 8px;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+/* Hover: aumenta la saturación del fondo */
+.note-box:hover {
+  background-color: rgba(8, 156, 124, 0.15);
+  transition: all 0.3s ease;
+}
+>>>>>>> Stashed changes
