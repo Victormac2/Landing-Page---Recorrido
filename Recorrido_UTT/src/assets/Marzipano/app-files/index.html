@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project Title</title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+<style> @-ms-viewport { width: device-width; } </style>
+<link rel="stylesheet" href="vendor/reset.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="multiple-scenes ">
+
+<div id="pano"></div>
+
+<div id="sceneList">
+  <ul class="scenes">
+    
+      <a href="javascript:void(0)" class="scene" data-id="0-entrada">
+        <li class="text">Entrada</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="1-corazoncito">
+        <li class="text">Corazoncito</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="2-camara-termografica---estacionamiento">
+        <li class="text">Camara Termografica - Estacionamiento</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="3-ruta-principal-1">
+        <li class="text">Ruta Principal 1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="4-pasillo-principal-1">
+        <li class="text">Pasillo Principal 1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="5-pasillo-principal-1-1">
+        <li class="text">Pasillo Principal 1 (1)</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="6-pasillo-continuacion">
+        <li class="text">Pasillo Continuacion</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="7-pasillo-principal-4">
+        <li class="text">Pasillo Principal 4</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="8-pasillo-principal-5">
+        <li class="text">Pasillo Principal 5</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="9-pasillo-principal-nomeacuerdo">
+        <li class="text">Pasillo Principal Nomeacuerdo</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="10-pasillo-principal-7">
+        <li class="text">Pasillo Principal 7</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="11-pasillo-principal-8">
+        <li class="text">Pasillo Principal 8</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="12-pasillo-principal-9">
+        <li class="text">Pasillo Principal 9</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="13-cadi-cafe">
+        <li class="text">CADI-Cafe</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="14-cadi-exterior">
+        <li class="text">CADI Exterior</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="15-cafeteria-_-exterior">
+        <li class="text">Cafeteria _ Exterior</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="16-entre-cafeteria-y-biblioteca">
+        <li class="text">Entre Cafeteria Y Biblioteca</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="17-asador">
+        <li class="text">Asador</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="18-glorieta">
+        <li class="text">Glorieta</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="19-afuera-de-biblio">
+        <li class="text">Afuera De Biblio</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="20-vinculacion-rectoria">
+        <li class="text">Vinculacion-Rectoria</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="21-poli-camino">
+        <li class="text">Poli Camino</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="22-poliforum">
+        <li class="text">Poliforum</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="23-entre-vinculacion-ab">
+        <li class="text">Entre Vinculacion AB</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="24-calaverotas">
+        <li class="text">Calaverotas</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="25-edificio-b---exterior">
+        <li class="text">Edificio B - Exterior</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="26-poliforum---afuerita">
+        <li class="text">Poliforum - Afuerita</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="27-poliforum-edificio-b">
+        <li class="text">Poliforum-Edificio B</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="28-cadi---psicologia">
+        <li class="text">CADI - Psicologia</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="29-cadi-interior-3-1">
+        <li class="text">CADI Interior 3 (1)</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="30-cadi-interior-2">
+        <li class="text">CADI Interior 2</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="31-cadi-interior-3">
+        <li class="text">CADI Interior 3</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="32-cadi-interior-1">
+        <li class="text">CADI Interior 1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="33-cafeteria">
+        <li class="text">Cafeteria</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="34-vinculacion-1">
+        <li class="text">Vinculacion 1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="35-edificioab-exterior">
+        <li class="text">EdificioAB-Exterior</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="36-estacionamiento---la-de-hasta-alla">
+        <li class="text">Estacionamiento - La De Hasta Alla</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="37-estacionamiento-edificio-a-b">
+        <li class="text">Estacionamiento Edificio A-B</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="38-centro-de-computo-biblioteca-2da">
+        <li class="text">Centro De Computo Biblioteca (2da)</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="39-biblioteca-1">
+        <li class="text">Biblioteca 1</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="40-revancha-biblioteca-no-se-cual">
+        <li class="text">Revancha Biblioteca No Se Cual</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="41-biblioteca-entrada">
+        <li class="text">Biblioteca Entrada</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="42-centro-de-computo-biblioteca-2da">
+        <li class="text">Centro De Computo Biblioteca (2da)</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="43-biblioteca">
+        <li class="text">Biblioteca</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="44-recto">
+        <li class="text">Recto</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="45-estacionamiento-2">
+        <li class="text">Estacionamiento 2</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="46-estacionamiento-2-inicio">
+        <li class="text">Estacionamiento 2 Inicio</li>
+      </a>
+    
+  </ul>
+</div>
+
+<div id="titleBar">
+  <h1 class="sceneName"></h1>
+</div>
+
+<a href="javascript:void(0)" id="autorotateToggle">
+  <img class="icon off" src="img/play.png">
+  <img class="icon on" src="img/pause.png">
+</a>
+
+<a href="javascript:void(0)" id="fullscreenToggle">
+  <img class="icon off" src="img/fullscreen.png">
+  <img class="icon on" src="img/windowed.png">
+</a>
+
+<a href="javascript:void(0)" id="sceneListToggle">
+  <img class="icon off" src="img/expand.png">
+  <img class="icon on" src="img/collapse.png">
+</a>
+
+<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+  <img class="icon" src="img/up.png">
+</a>
+<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+  <img class="icon" src="img/down.png">
+</a>
+<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+  <img class="icon" src="img/left.png">
+</a>
+<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+  <img class="icon" src="img/right.png">
+</a>
+<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+  <img class="icon" src="img/plus.png">
+</a>
+<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+  <img class="icon" src="img/minus.png">
+</a>
+
+<script src="vendor/screenfull.min.js" ></script>
+<script src="vendor/bowser.min.js" ></script>
+<script src="vendor/marzipano.js" ></script>
+
+<script src="data.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>

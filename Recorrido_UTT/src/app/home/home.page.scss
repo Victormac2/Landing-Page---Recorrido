@@ -1,0 +1,513 @@
+:host {
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    -ms-content-zooming: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+
+  ion-content {
+    --background: #000;
+    --color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+
+    &::part(scroll) {
+      overflow: hidden;
+    }
+  }
+}
+
+#pano {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Estilos para la barra de título y controles */
+#titleBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 40px;
+  height: 40px;
+  background-color: rgba(58,68,84,0.8);
+  z-index: 100;
+
+  .sceneName {
+    width: auto;
+    height: 100%;
+    padding: 10px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+  }
+}
+
+/* Lista de escenas */
+#sceneList {
+  position: fixed;
+  top: 0;
+  left: -220px;
+  width: 220px;
+  max-height: 100%;
+  overflow-y: auto;
+  background-color: rgba(58,68,84,0.8);
+  transition: left 0.5s ease-in-out;
+  z-index: 200;
+
+  &.enabled {
+    left: 0;
+  }
+
+  .scenes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    a.scene {
+      display: block;
+      width: 100%;
+      height: 40px;
+      padding: 0;
+      color: #fff;
+      background-color: transparent;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba(255,255,255,0.1);
+      }
+
+      li.text {
+        padding: 10px 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+/* Botones de control */
+#sceneListToggle, #autorotateToggle {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: rgba(58,68,84,0.8);
+  z-index: 1001; /* above #sceneList (which is 200) so buttons remain clickable */
+
+  .icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+
+  .icon.on { display: none; }
+  .icon.off { display: block; }
+}
+
+
+#sceneListToggle {
+  top: 0;
+  right: 40px;
+  background-color: #119a7f !important; /* Verde del nav */
+}
+
+#autorotateToggle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2000;
+  background-color: #119a7f !important; /* Verde del nav */
+}
+
+/* Estado activo para los botones */
+.enabled #sceneListToggle .icon.on { display: block; }
+.enabled #sceneListToggle .icon.off { display: none; }
+
+.autorotate-enabled #autorotateToggle .icon.on { display: block; }
+.autorotate-enabled #autorotateToggle .icon.off { display: none; }
+
+/* Ajustes para móvil */
+@media (max-width: 500px) {
+  #sceneList {
+    width: 100%;
+    left: -100%;
+  }
+
+  #titleBar {
+    right: 50px;
+    height: 50px;
+  }
+
+  #sceneListToggle, #autorotateToggle {
+    width: 50px;
+    height: 50px;
+  }
+
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      filter: brightness(0) invert(1); /* Iconos blancos */
+    }
+
+  }  
+a, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+#pano {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#titleBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 40px;
+  height: 40px;
+  background-color: rgba(0,0,0,.2);
+}
+
+.mobile #titleBar {
+  height: 50px;
+  right: 50px;
+}
+
+#sceneList {
+  position: absolute;
+  top: 0;
+  left: -220px;
+  width: 220px;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  -webkit-transition: left 0.5s ease-in-out;
+  transition: left 0.5s ease-in-out;
+  background-color: #119a7f;
+  background-color: #119a7f;
+}
+
+.mobile #sceneList {
+  width: 100%;
+  height: 100%;
+  left: -100%;
+}
+
+.enabled #sceneList {
+  left: 0;
+}
+
+.scenes {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #119a7f;
+  background-color: #119a7f;
+}
+
+.scenes li {
+  display: block;
+  width: 100%;
+  height: 30px;
+}
+
+.mobile .scenes li {
+  height: 50px;
+}
+
+.scenes .text {
+  position: absolute;
+  width: 190px;
+  padding: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobile .scenes .text {
+  width: 100%;
+}
+
+#autorotateToggle {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
+.mobile #autorotateToggle {
+  width: 50px;
+  height: 50px;
+  right: 50px;
+}
+
+#autorotateToggle .icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.mobile #autorotateToggle .icon {
+  width: 40px;
+  height: 40px;
+}
+
+#autorotateToggle .icon.on { display: none; }
+#autorotateToggle .icon.off { display: block; }
+
+#sceneListToggle {
+  position: absolute;
+  top: 0;
+  right: 80px;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
+.mobile #sceneListToggle {
+  width: 50px;
+  height: 50px;
+  right: 100px;
+}
+
+#sceneListToggle .icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.mobile #sceneListToggle .icon {
+  width: 40px;
+  height: 40px;
+}
+
+#sceneListToggle .icon.on { display: none; }
+#sceneListToggle .icon.off { display: block; }
+
+.enabled #sceneListToggle .icon.on { display: block; }
+.enabled #sceneListToggle .icon.off { display: none; }
+
+/* Toggle element uses its own .enabled class in index.js, ensure icons swap correctly */
+#sceneListToggle.enabled .icon.on { display: block; }
+#sceneListToggle.enabled .icon.off { display: none; }
+
+#autorotateToggle.enabled .icon.on { display: block; }
+#autorotateToggle.enabled .icon.off { display: none; }
+
+// Hotspots
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+}
+
+.hotspot.link-hotspot {
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  margin-top: -30px;
+  opacity: 0.9;
+}
+
+.no-touch .hotspot.link-hotspot:hover {
+  opacity: 1;
+}
+
+.no-touch .hotspot.link-hotspot:hover .link-hotspot-tooltip {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.mobile .hotspot.link-hotspot {
+  width: 70px;
+  height: 70px;
+}
+
+.hotspot.link-hotspot-icon {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.link-hotspot-tooltip {
+  position: absolute;
+  left: 100%;
+  top: 14px;
+  margin-left: 3px;
+  font-size: 16px;
+  max-width: 300px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background-color: rgb(120, 20, 11);
+  background-color: rgba(120, 14, 53, 0.75);
+  color: #fff;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  -ms-transform: translateX(-8px);
+  -webkit-transform: translateX(-8px);
+  transform: translateX(-8px);
+  -webkit-transition: -ms-transform 0.3s,
+                      -webkit-transform 0.3s,
+                      transform 0.3s,
+                      opacity 0.3s;
+  -moz-transition: -ms-transform 0.3s,
+                   -webkit-transform 0.3s,
+                   transform 0.3s,
+                   opacity 0.3s;
+  transition: -ms-transform 0.3s,
+              -webkit-transform 0.3s,
+              transform 0.3s,
+              opacity 0.3s;
+}
+
+.no-touch .link-hotspot-tooltip {
+  pointer-events: none;
+}
+
+.no-touch .hotspot.link-hotspot:hover .link-hotspot-tooltip {
+  pointer-events: all;
+}
+
+.mobile .link-hotspot {
+  top: 19px;
+}
+
+.info-hotspot {
+  line-height: 1.2em;
+  opacity: 0.9;
+  -webkit-transition: opacity 0.2s 0.2s;
+  -moz-transition: opacity 0.2s 0.2s;
+  transition: opacity 0.2s 0.2s;
+}
+
+.no-touch .info-hotspot:hover {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.info-hotspot-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgb(58,68,84);
+  cursor: pointer;
+  -webkit-transition: width 0.3s ease-in-out 0.5s,
+                      border-radius 0.3s ease-in-out 0.5s;
+  -moz-transition: width 0.3s ease-in-out 0.5s,
+                   border-radius 0.3s ease-in-out 0.5s;
+  transition: width 0.3s ease-in-out 0.5s,
+              border-radius 0.3s ease-in-out 0.5s;
+}
+
+.info-hotspot-icon {
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+}
+
+.info-hotspot-text {
+  position: absolute;
+  width: 300px;
+  height: auto;
+  max-height: 200px;
+  top: 40px;
+  left: 0;
+  padding: 10px;
+  background-color: rgb(58,68,84);
+  border-radius: 10px;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s 0s,
+                      visibility 0s 0.3s;
+  -moz-transition: opacity 0.3s 0s,
+                   visibility 0s 0.3s;
+  transition: opacity 0.3s 0s,
+              visibility 0s 0.3s;
+}
+
+.info-hotspot.visible .info-hotspot-text {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0.5s;
+  -moz-transition: opacity 0.3s 0.5s;
+  transition: opacity 0.3s 0.5s;
+}
+
+.mobile .info-hotspot.visible {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  z-index: 10000;
+}
+
+.mobile .info-hotspot.visible .info-hotspot-text {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.mobile .info-hotspot-title {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Force scene list to viewport corner (override potential Ionic positioning conflicts) */
+#sceneList {
+  position: fixed !important;
+  top: 0 !important;
+  left: -220px !important;
+  margin: 0 !important;
+  padding-top: 40px !important;
+  z-index: 900 !important;
+}
+
+#sceneList.enabled {
+  left: 0 !important;
+}

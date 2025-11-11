@@ -1,0 +1,7 @@
+{
+  "name": "Recorrido_UTT",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
