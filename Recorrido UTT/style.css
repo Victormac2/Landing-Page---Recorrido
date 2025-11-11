@@ -1,12 +1,30 @@
   /* ==============================
      logos + nav
      ============================== */
+     /* Header logos container */
+     .image-container {
+       flex: 1;
+       min-width: 0;
+       max-width: 250px;
+       padding: 0.5rem;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+     }
+
      .image-container img {
-        max-width: 100%;
-        height: auto;
-        width: 250px;
-        object-fit: cover;
-      }
+       max-width: 100%;
+       height: auto;
+       width: 100%;
+       object-fit: contain;
+     }
+
+     @media (max-width: 768px) {
+       .image-container {
+         max-width: 180px;
+       }
+     }
+
      .navbar-nav {
         display: flex;
         align-items: center;
@@ -47,12 +65,38 @@
     --verde: #089C7C;
     --verde-dark: #077a68;
     --guinda: #8A2D40;
+    --guinda-dark: #742a39;
+    --container-padding: 1rem;
   }
   
-  body {
+  html, body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  body {
     font-family: 'Poppins', sans-serif;
     color: #222;
+    position: relative;
+  }
+
+  /* Reglas globales para prevenir overflow */
+  .container {
+    width: 100% !important;
+    max-width: 1320px !important;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --container-padding: 0.75rem;
+    }
   }
   
   /* ==============================
