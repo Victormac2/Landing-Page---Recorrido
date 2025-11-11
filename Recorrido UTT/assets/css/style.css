@@ -1,112 +1,281 @@
-/* =========================================================
-     ESTILOS DEL PLAN DE ESTUDIOS (COMPLEMENTO para evnd.html)
-     ========================================================= */
-
-/* COLORES BASE (Asegúrate de que tus variables estén definidas o añádelas aquí) */
-/* :root {
-    --verde: #089C7C;
-    --verde-dark: #077C63;
-    --guinda: #9C27B0;
-    --guinda-dark: #6A1B9A;
-} */
+/* ==========================================================
+   🎓 EVND — Estilos visualmente congruentes con la Landing UTT
+   Autor: Isaí Escobar
+   Fecha: 10/11/2025
+   Descripción:
+   Este archivo mantiene la coherencia de color, sombras, tipografía
+   y estilo general con la landing page institucional.
+   ========================================================== */
 
 
-/* --- Estilos de las Tarjetas de Materias (TSU y ING) --- */
-
-.subject-card {
-    border: 1px solid #eee;
-    border-radius: 12px;
-    background-color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.subject-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
-}
-
-.subject-title {
-    color: #222; 
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.module-link {
-    color: var(--verde); /* Enlaces en el color verde principal */
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-.module-link:hover {
-    color: var(--guinda); /* Hover al color Guinda */
-}
-
-/* Destacado de Proyectos/Optativas (TSU) */
-.subject-card.subject-highlight-tsu {
-    border: 2px solid var(--verde-dark);
-    background-color: #e6f7f3; /* Fondo verde claro */
-}
-.subject-card.subject-highlight-tsu .subject-title {
-    color: var(--verde-dark);
-}
-
-/* Destacado de Proyectos/Optativas (INGENIERÍA) */
-.subject-card.subject-highlight-ing {
-    border: 2px solid var(--guinda-dark);
-    background-color: #f7e6fa; /* Fondo morado claro */
-}
-.subject-card.subject-highlight-ing .subject-title {
-    color: var(--guinda-dark);
-}
-
-/* Estilos de las Tarjetas de Estadía */
-.estadia-card-tsu {
-    border-color: var(--verde) !important;
-    background-color: #e6f7f3;
-}
-.estadia-card-ing {
-    border-color: var(--guinda) !important;
-    background-color: #f7e6fa;
+/* ==========================================================
+   🧱 VARIABLES DE COLOR PRINCIPALES (PALABRALES)
+   ========================================================== */
+:root {
+  --verde: #089C7C;        /* Verde institucional principal */
+  --verde-dark: #077a68;   /* Verde más oscuro para degradados */
+  --guinda: #8A2D40;       /* Guinda institucional secundario */
+  --texto: #222;           /* Texto base oscuro */
 }
 
 
-/* --- Estilos de las PÍLDORAS (Tabs) --- */
-
-.study-plan-pills .nav-link {
-    border-radius: 50rem !important; 
-    margin: 3px; /* Menos margen para que quepan 10 */
-    font-weight: 600;
-    transition: all 0.3s;
-    font-size: 0.85rem; /* Letra más pequeña para que quepan */
+/* ==========================================================
+   🧰 RESET Y BASE TIPOGRÁFICA
+   ========================================================== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: var(--texto);
+  background-color: #fff;
+  line-height: 1.6;
 }
 
-/* TSU PÍLDORAS (VERDE) */
-.study-plan-pills .tsu-pill {
-    border: 1px solid var(--verde);
-    color: var(--verde);
-}
-.study-plan-pills .tsu-pill.active {
-    background: linear-gradient(90deg, var(--verde), var(--verde-dark)) !important;
-    color: white !important;
-    border-color: var(--verde-dark) !important;
-    box-shadow: 0 4px 8px rgba(8, 156, 124, 0.3);
+* {
+  transition: all 0.25s ease; /* Transiciones suaves globales */
 }
 
-/* INGENIERÍA PÍLDORAS (GUINDA) */
-.study-plan-pills .ing-pill {
-    border: 1px solid var(--guinda);
-    color: var(--guinda);
-}
-.study-plan-pills .ing-pill.active {
-    background: linear-gradient(90deg, var(--guinda), var(--guinda-dark)) !important;
-    color: white !important;
-    border-color: var(--guinda-dark) !important;
-    box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3);
+
+/* ==========================================================
+   🟩 NAV PILLS — BOTONES DE TSU / INGENIERÍA
+   ========================================================== */
+.nav-pills .nav-link {
+  background-color: #f4f4f4;     /* Fondo neutro para los botones inactivos */
+  color: var(--texto);           /* Texto oscuro */
+  font-weight: 500;              /* Peso medio */
+  border-radius: 999px;          /* Bordes redondeados */
+  padding: 10px 22px;
+  transition: all 0.25s ease;
+  border: none;
 }
 
-/* Píldora Hover General */
-.study-plan-pills .nav-link:not(.active):hover {
-    background-color: #f0f0f0;
+/* Estado ACTIVO — igual al CTA de la landing */
+.nav-pills .nav-link.active {
+  background: linear-gradient(90deg, var(--verde), var(--verde-dark)); /* Degradado verde institucional */
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(8,156,124,0.18); /* Sombra suave tipo CTA */
 }
+
+/* Hover decorativo — cambia temporalmente a guinda */
+.nav-pills .nav-link.active:hover {
+  background: linear-gradient(90deg, var(--guinda), #742a39);
+}
+
+/* Hover de los botones inactivos */
+.nav-pills .nav-link:hover {
+  background-color: #eaeaea;
+}
+
+
+/* ==========================================================
+   💼 TARJETAS DE CUATRIMESTRE (CARDS)
+   ========================================================== */
+.card {
+  border-radius: 12px; /* Bordes suaves y limpios */
+  border: 1px solid rgba(8,156,124,0.15); /* Borde verdoso translúcido */
+  box-shadow: 0 8px 18px rgba(8,156,124,0.15); /* Sombra verde tenue */
+  transition: all 0.25s ease;
+}
+
+/* Hover con efecto flotante */
+.card:hover {
+  box-shadow: 0 10px 28px rgba(8,156,124,0.25);
+  transform: translateY(-4px);
+}
+
+/* Ajuste interno de los títulos de las tarjetas */
+.card-title {
+  color: var(--verde-dark);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Textos secundarios dentro de tarjetas */
+.card-text {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+
+/* ==========================================================
+   🧠 ENCABEZADOS Y TÍTULOS DE SECCIÓN
+   ========================================================== */
+h1, h2, .section-title {
+  font-weight: 700;
+  color: var(--verde-dark);
+  margin-bottom: 1rem;
+}
+
+h3, h4 {
+  font-weight: 600;
+  color: var(--texto);
+}
+
+
+/* ==========================================================
+   🟢 BOTONES GENERALES (REEMPLAZO DE .btn-primary)
+   ========================================================== */
+.btn-primary {
+  background: linear-gradient(90deg, var(--verde), var(--verde-dark));
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(8,156,124,0.18);
+  transition: all .25s ease;
+}
+
+/* Hover decorativo igual al CTA de la landing */
+.btn-primary:hover {
+  background: linear-gradient(90deg, var(--guinda), #742a39);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(8,156,124,0.25);
+}
+
+
+/* ==========================================================
+   🖼️ CONTENEDORES Y SECCIONES
+   ========================================================== */
+section {
+  padding: 60px 0;
+}
+
+/* Alternancia sutil de fondos */
+section:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Asegura consistencia de contenedores con Bootstrap */
+.container {
+  max-width: 1200px;
+}
+
+
+/* ==========================================================
+   🧩 FOOTER — MISMO DISEÑO QUE LANDING
+   ========================================================== */
+footer {
+  background: linear-gradient(180deg, var(--verde), var(--verde-dark));
+  color: #fff;
+  padding: 2.5rem 0;
+}
+
+footer h6 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity .25s ease;
+}
+
+footer a:hover {
+  opacity: 0.85;
+}
+
+/* Pequeño ajuste para iconos o enlaces del footer */
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 6px;
+}
+
+
+/* ==========================================================
+   📱 RESPONSIVIDAD Y AJUSTES MÓVILES
+   ========================================================== */
+@media (max-width: 991px) {
+  .nav-pills .nav-link {
+    font-size: 0.95rem;
+    padding: 8px 18px;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  h1, h2, .section-title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn-primary {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+  }
+  footer {
+    text-align: center;
+  }
+}
+
+/* ==========================================================
+   🔍 CLASES DE APOYO VISUAL (OPCIONALES)
+   ========================================================== */
+.text-verde { color: var(--verde); }
+.bg-verde { background-color: var(--verde); color: #fff; }
+.border-verde { border-color: var(--verde) !important; }
+.shadow-verde { box-shadow: 0 6px 18px rgba(8,156,124,0.25) !important; }
+/* === ESTILO DE LAS NOTAS O RECUADROS === */
+.note-box {
+  border: 2px solid #089C7C; /* Borde verde institucional */
+  background-color: rgba(8, 156, 124, 0.08); /* Fondo verde claro translúcido */
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  color: #222;
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
+}
+
+/* === ACORDEÓN: botones colapsables (Misión, Visión, etc.) === */
+.accordion-button {
+  background-color: rgba(8, 156, 124, 0.1);
+  color: #222;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Hover y foco */
+.accordion-button:hover,
+.accordion-button:focus {
+  background-color: #089C7C;
+  color: #fff;
+}
+
+/* Cuando el acordeón está abierto (clase Bootstrap 'collapsed' desaparece) */
+.accordion-button:not(.collapsed) {
+  background-color: #8A2D40; /* guinda */
+  color: #fff;
+  box-shadow: none;
+}
+/* === CAJA DE NOTA PERSONALIZADA === */
+.note-box {
+  border: 2px solid #089C7C; /* verde institucional */
+  background-color: rgba(8, 156, 124, 0.08); /* verde suave translúcido */
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  color: #222;
+  font-size: 0.95rem;
+  text-align: left;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Icono decorativo */
+.note-box i {
+  color: #089C7C;
+  margin-right: 8px;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+/* Cuando se pasa el mouse: refuerzo visual */
+.note-box:hover {
+  background-color: rgba(8, 156, 124, 0.15);
+  transition: all 0.3s ease;
+}
+
