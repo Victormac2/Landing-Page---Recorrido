@@ -16,7 +16,8 @@
   --verde-dark: #077a68;     /* Verde más oscuro para degradados */
   --guinda: #8A2D40;         /* Guinda institucional secundario */
   --guinda-dark: #74003E;    /* Guinda oscuro (para degradado) */
-  --texto: #222;             /* Color base para textos */
+  --texto: #222;  
+  --gris:#dcdcdc;          /* Color gris acorde a landing*/
 }
 
 
@@ -152,8 +153,8 @@ body {
    🧾 RECUADROS INFORMATIVOS (Nota informativa)
    ========================================================== */
 .note-box {
-  border: 2px solid var(--verde);
-  background-color: rgba(8, 156, 124, 0.08);
+  border: 2px solid var(--gris);
+  background-color: rgba(220, 220, 220, 1);
   border-radius: 10px;
   padding: 1rem 1.25rem;
   color: #222;
