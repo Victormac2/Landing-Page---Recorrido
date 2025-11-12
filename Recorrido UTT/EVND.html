@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     
-    <link rel="stylesheet" href="assets/css/style-pwa.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     
@@ -27,7 +27,7 @@
                 <p class="lead text-muted mt-3">
                     Dos niveles de formación: **Técnico Superior Universitario** (6 cuatrimestres) e **Ingeniería** (10 cuatrimestres).
                 </p>
-                <a href="versionpdf/TSU_ING_EVIND.pdf" target="_blank" class="btn btn-lg custom-btn-green fw-semibold px-4 py-2 rounded-pill shadow-lg mt-3">
+                <a href="assets/Docs/EVND_TSU_LIC.rar" target="_blank" class="btn btn-lg custom-btn-green fw-semibold px-4 py-2 rounded-pill shadow-lg mt-3">
                     Descargar Plan de Estudios Completo <i class="bi bi-file-earmark-pdf"></i>
                 </a>
             </div>
@@ -304,5 +304,13 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Busca en todo el cuerpo del documento los textos entre ** y los reemplaza por <strong>texto</strong>
+  // El modificador "g" aplica globalmente, y "?" evita capturas demasiado amplias.
+  document.body.innerHTML = document.body.innerHTML.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+});
+</script>
+
 </body>
 </html>

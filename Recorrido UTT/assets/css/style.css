@@ -1,112 +1,247 @@
-/* =========================================================
-     ESTILOS DEL PLAN DE ESTUDIOS (COMPLEMENTO para evnd.html)
-     ========================================================= */
-
-/* COLORES BASE (Asegúrate de que tus variables estén definidas o añádelas aquí) */
-/* :root {
-    --verde: #089C7C;
-    --verde-dark: #077C63;
-    --guinda: #9C27B0;
-    --guinda-dark: #6A1B9A;
-} */
+/* ==========================================================
+   🎓 EVND — Estilos visualmente congruentes con la Landing UTT
+   Autor: Isaí Escobar
+   Fecha de actualización: 10/11/2025
+   Descripción:
+   Este archivo mantiene la coherencia de color, sombras, tipografía
+   y estilo general con la landing page institucional (index.html).
+   ========================================================== */
 
 
-/* --- Estilos de las Tarjetas de Materias (TSU y ING) --- */
-
-.subject-card {
-    border: 1px solid #eee;
-    border-radius: 12px;
-    background-color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.subject-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
-}
-
-.subject-title {
-    color: #222; 
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.module-link {
-    color: var(--verde); /* Enlaces en el color verde principal */
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-.module-link:hover {
-    color: var(--guinda); /* Hover al color Guinda */
-}
-
-/* Destacado de Proyectos/Optativas (TSU) */
-.subject-card.subject-highlight-tsu {
-    border: 2px solid var(--verde-dark);
-    background-color: #e6f7f3; /* Fondo verde claro */
-}
-.subject-card.subject-highlight-tsu .subject-title {
-    color: var(--verde-dark);
-}
-
-/* Destacado de Proyectos/Optativas (INGENIERÍA) */
-.subject-card.subject-highlight-ing {
-    border: 2px solid var(--guinda-dark);
-    background-color: #f7e6fa; /* Fondo morado claro */
-}
-.subject-card.subject-highlight-ing .subject-title {
-    color: var(--guinda-dark);
-}
-
-/* Estilos de las Tarjetas de Estadía */
-.estadia-card-tsu {
-    border-color: var(--verde) !important;
-    background-color: #e6f7f3;
-}
-.estadia-card-ing {
-    border-color: var(--guinda) !important;
-    background-color: #f7e6fa;
+/* ==========================================================
+   🧱 VARIABLES DE COLOR PRINCIPALES
+   ========================================================== */
+:root {
+  --verde: #089C7C;          /* Verde institucional principal */
+  --verde-dark: #077a68;     /* Verde más oscuro para degradados */
+  --guinda: #8A2D40;         /* Guinda institucional secundario */
+  --guinda-dark: #6a1b9a;    /* Guinda oscuro (para degradado) */
+  --texto: #222;             /* Color base para textos */
 }
 
 
-/* --- Estilos de las PÍLDORAS (Tabs) --- */
+/* ==========================================================
+   🧰 RESETEO BASE Y TIPOGRAFÍA
+   ========================================================== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: var(--texto);
+  background-color: #fff;
+  line-height: 1.6;
+}
 
+* {
+  transition: all 0.25s ease; /* Transiciones suaves globales */
+}
+
+
+/* ==========================================================
+   🟩 PÍLDORAS DE NAVEGACIÓN — TSU / INGENIERÍA
+   ========================================================== */
 .study-plan-pills .nav-link {
-    border-radius: 50rem !important; 
-    margin: 3px; /* Menos margen para que quepan 10 */
-    font-weight: 600;
-    transition: all 0.3s;
-    font-size: 0.85rem; /* Letra más pequeña para que quepan */
+  border-radius: 50rem !important;
+  margin: 3px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  border: 1px solid transparent;
 }
 
-/* TSU PÍLDORAS (VERDE) */
+/* --- Píldoras TSU (Verde institucional) --- */
 .study-plan-pills .tsu-pill {
-    border: 1px solid var(--verde);
-    color: var(--verde);
+  border: 1px solid var(--verde);
+  color: var(--verde);
 }
 .study-plan-pills .tsu-pill.active {
-    background: linear-gradient(90deg, var(--verde), var(--verde-dark)) !important;
-    color: white !important;
-    border-color: var(--verde-dark) !important;
-    box-shadow: 0 4px 8px rgba(8, 156, 124, 0.3);
+  background: linear-gradient(90deg, var(--verde), var(--verde-dark)) !important;
+  color: white !important;
+  border-color: var(--verde-dark) !important;
+  box-shadow: 0 4px 8px rgba(8, 156, 124, 0.3);
 }
 
-/* INGENIERÍA PÍLDORAS (GUINDA) */
+/* --- Píldoras Ingeniería (Guinda institucional) --- */
 .study-plan-pills .ing-pill {
-    border: 1px solid var(--guinda);
-    color: var(--guinda);
+  border: 1px solid var(--guinda);
+  color: var(--guinda);
 }
 .study-plan-pills .ing-pill.active {
-    background: linear-gradient(90deg, var(--guinda), var(--guinda-dark)) !important;
-    color: white !important;
-    border-color: var(--guinda-dark) !important;
-    box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3);
+  background: linear-gradient(90deg, var(--guinda), var(--guinda-dark)) !important;
+  color: white !important;
+  border-color: var(--guinda-dark) !important;
+  box-shadow: 0 4px 8px rgba(138, 45, 64, 0.3);
 }
 
-/* Píldora Hover General */
+/* --- Hover general --- */
 .study-plan-pills .nav-link:not(.active):hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
+  transform: scale(1.02);
+}
+
+
+/* ==========================================================
+   💼 TARJETAS DE MATERIAS (TSU / INGENIERÍA)
+   ========================================================== */
+.subject-card {
+  border: 1px solid #ccc; /* Borde gris más notorio */
+  border-radius: 12px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  text-align: center; /* Centra el contenido */
+}
+
+/* --- Hover con tono verde institucional --- */
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(8, 156, 124, 0.25);
+  border-color: var(--verde-dark);
+}
+
+/* --- Títulos dentro de las tarjetas --- */
+.subject-title {
+  color: var(--texto);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Enlace “Ver Temario PDF” --- */
+.module-link {
+  color: var(--guinda);
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+}
+.module-link:hover {
+  color: var(--verde);
+  text-decoration: underline;
+}
+
+/* --- Tarjetas destacadas de proyectos u optativas TSU --- */
+.subject-card.subject-highlight-tsu {
+  border: 2px solid var(--verde-dark);
+  background-color: #e6f7f3; /* Verde claro */
+}
+.subject-card.subject-highlight-tsu .subject-title {
+  color: var(--verde-dark);
+}
+
+/* --- Tarjetas destacadas de proyectos u optativas Ingeniería --- */
+.subject-card.subject-highlight-ing {
+  border: 2px solid var(--guinda-dark);
+  background-color: #f7e6fa; /* Guinda claro */
+}
+.subject-card.subject-highlight-ing .subject-title {
+  color: var(--guinda-dark);
+}
+
+/* --- Tarjetas de Estadía (TSU / INGENIERÍA) --- */
+.estadia-card-tsu {
+  border: 2px solid var(--verde) !important;
+  background-color: rgba(8, 156, 124, 0.1);
+}
+.estadia-card-ing {
+  border: 2px solid var(--guinda) !important;
+  background-color: rgba(138, 45, 64, 0.1);
+}
+
+
+/* ==========================================================
+   🧾 RECUADROS INFORMATIVOS (Nota informativa)
+   ========================================================== */
+.note-box {
+  border: 2px solid var(--verde);
+  background-color: rgba(8, 156, 124, 0.08);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  color: #222;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Ícono decorativo en la nota */
+.note-box i {
+  color: var(--verde);
+  margin-right: 8px;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+/* Hover con refuerzo visual */
+.note-box:hover {
+  background-color: rgba(8, 156, 124, 0.15);
+  transition: all 0.3s ease;
+}
+
+
+/* ==========================================================
+   🔽 ACORDEONES (Misión, Visión, etc.)
+   ========================================================== */
+.accordion-button {
+  background-color: rgba(8, 156, 124, 0.1);
+  color: var(--texto);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.accordion-button:hover,
+.accordion-button:focus {
+  background-color: var(--verde);
+  color: #fff;
+}
+.accordion-button:not(.collapsed) {
+  background-color: var(--guinda);
+  color: #fff;
+  box-shadow: none;
+}
+
+
+/* ==========================================================
+   📱 RESPONSIVIDAD Y AJUSTES MÓVILES
+   ========================================================== */
+@media (max-width: 991px) {
+  .study-plan-pills .nav-link {
+    font-size: 0.9rem;
+    padding: 6px 14px;
+  }
+
+  .subject-card {
+    margin-bottom: 1rem;
+  }
+
+  .note-box {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .study-plan-pills .nav-link {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+
+  .subject-card {
+    border-radius: 10px;
+  }
+}
+/* ==========================================================
+   🎨 BOTÓN DESCARGAR — Hover estilo Ingeniería
+   ========================================================== */
+.custom-btn-green {
+  background: linear-gradient(90deg, var(--verde), var(--verde-dark));
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(8, 156, 124, 0.25);
+}
+
+/* Hover tipo Ingeniería */
+.custom-btn-green:hover {
+  background: linear-gradient(90deg, var(--guinda), var(--guinda-dark)); /* Degradado guinda */
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(138, 45, 64, 0.35); /* Sombra guinda */
+  transform: translateY(-2px); /* Ligero levantamiento */
 }
