@@ -251,7 +251,7 @@ body {
    ========================================================== */
 .hero-evnd {
   position: relative;
-  background: url("/assets/images/Coyote_EVND.png") center/cover no-repeat; /* Cambia por el nombre de tu imagen */
+  background: url("assets/images/Coyote_EVND.png") center/cover no-repeat; /* Cambia por el nombre de tu imagen */
   min-height: 70vh; /* Altura adecuada para destacar el título */
   display: flex;
   align-items: center;
