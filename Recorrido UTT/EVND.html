@@ -17,22 +17,26 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    
+    <!-- NAVBAR -->
+<div id="navbar-container">
+</div>
     <div class="container py-5">
+        <!-- ===== HERO CON IMAGEN DE FONDO ===== -->
+<section class="hero-evnd d-flex align-items-center justify-content-center text-center text-white">
+  <div class="hero-overlay"></div>
+  <div class="container position-relative">
+      <h1 class="fw-bolder display-5">
+          Tecnologías de la Información: Entornos Virtuales y Negocios Digitales
+      </h1>
+      <p class="lead mt-3">
+          Dos niveles de formación: <strong>Técnico Superior Universitario</strong> (6 cuatrimestres) y <strong>Lic. en Ingeniería</strong> (10 cuatrimestres).
+      </p>
+      <a href="assets/Docs/EVND_TSU_LIC.rar" target="_blank" class="btn btn-lg custom-btn-green fw-semibold px-4 py-2 rounded-pill shadow-lg mt-3">
+          Descargar Plan de Estudios Completo <i class="bi bi-file-earmark-pdf"></i>
+      </a>
+  </div>
+</section>
 
-        <div class="row justify-content-center text-center mb-5">
-            <div class="col-lg-12">
-                <h1 class="fw-bolder display-5" style="color: var(--verde-dark);">
-                    Tecnologías de la Información: Entornos Virtuales y Negocios Digitales
-                </h1>
-                <p class="lead text-muted mt-3">
-                    Dos niveles de formación: **Técnico Superior Universitario** (6 cuatrimestres) y **Lic. en Ingeniería** (10 cuatrimestres).
-                </p>
-                <a href="assets/Docs/EVND_TSU_LIC.rar" target="_blank" class="btn btn-lg custom-btn-green fw-semibold px-4 py-2 rounded-pill shadow-lg mt-3">
-                    Descargar Plan de Estudios Completo <i class="bi bi-file-earmark-pdf"></i>
-                </a>
-            </div>
-        </div>
         
         <hr class="my-5">
 
@@ -303,8 +307,29 @@
             </div>
         </div>
     </div>
+    
+    <!-- FOOTER -->
+    <div id="footer-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+  // === CARGAR NAVBAR ===
+  fetch("assets/components/navbar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar-container").innerHTML = data;
+    })
+    .catch(error => console.error("Error al cargar el navbar:", error));
+
+  // === CARGAR FOOTER ===
+  fetch("assets/components/footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer-container").innerHTML = data;
+    })
+    .catch(error => console.error("Error al cargar el footer:", error));
+</script>
+
     <script>
 document.addEventListener("DOMContentLoaded", () => {
   // Busca en todo el cuerpo del documento los textos entre ** y los reemplaza por <strong>texto</strong>
