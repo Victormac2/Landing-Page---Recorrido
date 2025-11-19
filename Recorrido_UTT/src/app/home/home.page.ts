@@ -24,8 +24,8 @@ export class HomePage implements OnDestroy, AfterViewInit {
     this.initializationInProgress = true;
 
     try {
-      (window as any).MARZIPANO_TILE_PATH = 'assets/Marzipano/app-files/tiles';
-      (window as any).MARZIPANO_ASSET_PATH = 'assets/Marzipano/app-files';
+      (window as any).MARZIPANO_TILE_PATH = '/assets/Marzipano/app-files/tiles';
+      (window as any).MARZIPANO_ASSET_PATH = '/assets/Marzipano/app-files';
     } catch (e) {
       console.warn('No se pudo definir MARZIPANO_TILE_PATH:', e);
       this.initializationInProgress = false;
@@ -44,6 +44,44 @@ export class HomePage implements OnDestroy, AfterViewInit {
       await this.tryInitializeMarzipano();
       this.initialized = true;
       console.log('✅ Marzipano inicializado correctamente');
+      // Detectar si el navegador es de un visor VR y activar modo VR automáticamente.
+      try {
+        const w = window as any;
+        let isVrBrowser = false;
+
+        if (typeof w.isVRDevice === 'function') {
+          try {
+            // isVRDevice puede ser async
+            isVrBrowser = await w.isVRDevice();
+          } catch (err) {
+            console.warn('isVRDevice lanzó error, usando heurística de UA:', err);
+            isVrBrowser = /oculus|quest/i.test(navigator.userAgent) || !!(navigator as any).xr;
+          }
+        } else {
+          isVrBrowser = /oculus|quest/i.test(navigator.userAgent) || !!(navigator as any).xr;
+        }
+
+        if (isVrBrowser) {
+          console.log('🔎 Navegador VR detectado — activando modo VR automáticamente');
+          try {
+            if (typeof w.activateVRMode === 'function') {
+              // activateVRMode puede ser async y ahora está envuelta para usar el viewer interno
+              await w.activateVRMode();
+            } else {
+              // Fallback: intentar fullscreen del elemento pano
+              const panoEl = document.getElementById('pano');
+              if (panoEl && panoEl.requestFullscreen) {
+                await panoEl.requestFullscreen();
+              }
+            }
+          } catch (e) {
+            console.warn('No se pudo activar modo VR automáticamente:', e);
+          }
+        }
+      } catch (e) {
+        // no bloquear la app si algo sale mal
+        console.warn('Error al detectar/activar VR:', e);
+      }
     } catch (error) {
       console.error('Error durante la inicialización:', error);
     } finally {
@@ -86,7 +124,7 @@ export class HomePage implements OnDestroy, AfterViewInit {
   }
 
   private async loadMarzipanoAssets(): Promise<void> {
-    const base = 'assets/Marzipano/app-files';
+    const base = '/assets/Marzipano/app-files';
 
     // Inyectar CSS
     this.injectCss(`${base}/vendor/reset.min.css`);
@@ -152,4 +190,6 @@ export class HomePage implements OnDestroy, AfterViewInit {
     }
     this.injectedElements = [];
   }
+
+  // No se requiere método manual: la app detecta y activa VR automáticamente cuando corresponde.
 }

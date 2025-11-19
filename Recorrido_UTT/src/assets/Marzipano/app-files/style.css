@@ -1,38 +1,30 @@
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -ms-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none;
-  -ms-content-zooming: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+/* ============================
+   GLOBAL / IONIC-FRIENDLY RESET
+   ============================ */
+:host {
+  * {
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ion-content {
+    --background: #000;
+    --color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+  }
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  background-color: #000;
-  color: #fff;
-}
-
-a, a:hover, a:active, a:visited {
-  text-decoration: none;
-  color: inherit;
-}
-
+/* ============================
+   PANORAMA / CANVAS
+   ============================ */
 #pano {
   position: absolute;
   top: 0;
@@ -42,745 +34,314 @@ a, a:hover, a:active, a:visited {
   overflow: hidden;
 }
 
+/* Asegurar que el canvas/WebGL del viewer ocupe todo el contenedor y no cree un nuevo stacking context
+   que pueda ocultar los hotspots. También forzamos display:block para evitar espacios en algunos navegadores. */
+#pano canvas, #pano canvas[role="presentation"] {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  vertical-align: top;
+}
+
+/* ============================
+   TITLE BAR (centrado, verde, no bloquea botones)
+   ============================ */
 #titleBar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 40px;
+  width: 100%;
   height: 40px;
-  text-align: center;
-}
 
-.mobile #titleBar {
-  height: 50px;
-  right: 50px;
-}
+  background-color: rgba(17, 154, 127, 0.95);
 
-/* If there is a fullscreen button the title bar must make space for it */
-body.fullscreen-enabled #titleBar {
-  right: 80px;
-}
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-body.fullscreen-enabled.mobile #titleBar {
-  right: 100px;
-}
+  pointer-events: none;
 
-/* If there are multiple scenes the title bar must make space for the scene list toggle */
-body.multiple-scenes #titleBar {
-  left: 40px;
-}
-
-body.multiple-scenes.mobile #titleBar {
-  left: 50px;
+  z-index: 500;
 }
 
 #titleBar .sceneName {
+  font-size: 18px;
+  font-weight: bold;
+  pointer-events: none;
+  text-align: center;
   width: 100%;
+}
+
+/* ============================
+   SCENE LIST (LEFT SLIDE PANEL)
+   ============================ */
+#sceneList {
+  position: fixed;
+  top: 0;
+  left: -220px;
+  width: 220px;
   height: 100%;
-  line-height: 30px;
-  padding: 5px;
-  background-color: rgb(17, 154, 127);
-  background-color: rgba(17, 154, 127, 0.75);
+  max-height: 100%;
+  overflow-y: auto;
+  margin: 0;
+  padding-top: 40px;
+  background-color: #119a7f;
+  transition: left 0.35s ease-in-out;
+  z-index: 900;
+  -webkit-overflow-scrolling: touch;
+}
+
+#sceneList.enabled {
+  left: 0;
+}
+
+/* lista de escenas */
+.scenes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* cada item - enlace que ocupa toda la fila */
+.scenes a.scene {
+  display: block;
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* hover: amplio soporte (restaura hover aunque no exista .no-touch) */
+.scenes a.scene:hover,
+.no-touch .scenes a.scene:hover {
+  background-color: rgba(255,255,255,0.06);
+}
+
+/* texto dentro del li (recibe padding), centrado si quieres */
+.scenes li.text {
+  padding: 10px 15px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-
-  -moz-user-select: text;
-  -webkit-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
+  text-align: center;
 }
 
-.mobile #titleBar .sceneName {
-  line-height: 40px;
+/* estado current */
+.scenes a.scene.current,
+#sceneList .scene.current {
+  background-color: rgba(120, 14, 53, 0.75);
 }
 
-#fullscreenToggle {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  background-color: rgb(103,115,131);
-  background-color: rgba(103,115,131,0.8);
-}
+/* ============================
+   TOGGLE BUTTONS (sceneListToggle y autorotateToggle)
+   ============================ */
 
-.mobile #fullscreenToggle {
-  width: 50px;
-  height: 50px;
-}
-
-body.fullscreen-enabled #fullscreenToggle {
-  display: block;
-}
-
-#fullscreenToggle .icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 30px;
-  height: 30px;
-}
-
-.mobile #fullscreenToggle .icon {
-  top: 10px;
-  right: 10px;
-}
-
-#fullscreenToggle .icon.on {
-  display: none;
-}
-
-#fullscreenToggle .icon.off {
-  display: block;
-}
-
-#fullscreenToggle.enabled .icon.on {
-  display: block;
-}
-
-#fullscreenToggle.enabled .icon.off {
-  display: none;
-}
-
-#autorotateToggle {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  background-color: rgb(103,115,131);
-  background-color: rgba(103,115,131,0.8);
-}
-
-.mobile #autorotateToggle {
-  width: 50px;
-  height: 50px;
-}
-
-/* If there is a fullscreen button, autorotate must placed a bit to the left */
-body.fullscreen-enabled #autorotateToggle {
-  right: 40px;
-}
-
-body.fullscreen-enabled.mobile #autorotateToggle {
-  right: 50px;
-}
-
-#autorotateToggle .icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 30px;
-  height: 30px;
-}
-
-.mobile #autorotateToggle .icon {
-  top: 10px;
-  right: 10px;
-}
-
-#autorotateToggle .icon.on {
-  display: none;
-}
-
-#autorotateToggle .icon.off {
-  display: block;
-}
-
-#autorotateToggle.enabled .icon.on {
-  display: block;
-}
-
-#autorotateToggle.enabled .icon.off {
-  display: none;
-}
-
-
+/* botón del Scene List (IZQUIERDA) */
 #sceneListToggle {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 40px;
   height: 40px;
   padding: 5px;
-  background-color: rgb(17, 154, 127);
-  background-color: rgba(17, 154, 127, 0.75);
+  background-color: transparent !important;
+  z-index: 2000;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color .18s ease, transform .12s ease;
 }
 
-.mobile #sceneListToggle {
-  width: 50px;
-  height: 50px;
+/* autorotate en la derecha */
+#autorotateToggle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: transparent;
+  z-index: 2000;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color .18s ease, transform .12s ease;
 }
 
-#sceneListToggle .text {
-  position: absolute;
-  top: 5px;
-  left: 15px;
-  width: 100%;
-  line-height: 30px;
+/* hover/active para desktop */
+.no-touch #sceneListToggle:hover,
+.no-touch #autorotateToggle:hover {
+  background-color: transparent;
+}
+#sceneListToggle:active,
+#autorotateToggle:active {
+  transform: translateY(1px) scale(.995);
 }
 
-#sceneListToggle .icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+/* ============================
+   ICONS: base y tamaños
+   ============================ */
+#sceneListToggle .icon,
+#autorotateToggle .icon {
+  display: block;
   width: 30px;
   height: 30px;
+  object-fit: contain;
+  margin: 0 auto;
+  pointer-events: none;
 }
 
-.mobile #sceneListToggle .icon {
-  top: 10px;
-  right: 10px;
-}
+/* por defecto: muestra la versión 'off' */
+#sceneListToggle .icon.on  { display: none; }
+#sceneListToggle .icon.off { display: block; }
 
-#sceneListToggle .icon.on {
+#autorotateToggle .icon.on  { display: none; }
+#autorotateToggle .icon.off { display: block; }
+
+/* ============================
+   SELECTORES ROBUSTOS PARA ALTERNAR ICONOS
+   ============================ */
+
+/* MENU (scene list) activado — soporta varias formas de aplicar la clase */
+body.enabled #sceneListToggle .icon.on,
+#sceneListToggle.enabled .icon.on,
+#sceneList.enabled ~ #sceneListToggle .icon.on,
+#sceneList.enabled + #sceneListToggle .icon.on {
+  display: block;
+}
+body.enabled #sceneListToggle .icon.off,
+#sceneListToggle.enabled .icon.off,
+#sceneList.enabled ~ #sceneListToggle .icon.off,
+#sceneList.enabled + #sceneListToggle .icon.off {
   display: none;
 }
 
-#sceneListToggle .icon.off {
+/* AUTOROTATE (play/pause) — reglas ampliadas para captar distintas formas */
+body.autorotate-enabled #autorotateToggle .icon.on,
+#autorotateToggle.autorotate-enabled .icon.on,
+#autorotateToggle.enabled .icon.on,
+body.enabled #autorotateToggle .icon.on /*fallback si tu JS usa enabled*/ {
   display: block;
 }
 
-#sceneListToggle.enabled .icon.on {
-  display: block;
-}
-
-#sceneListToggle.enabled .icon.off {
+/* Apagar la versión 'off' cuando está activo */
+body.autorotate-enabled #autorotateToggle .icon.off,
+#autorotateToggle.autorotate-enabled .icon.off,
+#autorotateToggle.enabled .icon.off,
+body.enabled #autorotateToggle .icon.off {
   display: none;
 }
 
-#sceneList {
-  position: absolute;
-  top: 0;
-  left: -220px;
-  padding-top: 40px;
-  width: 220px;
-  max-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  margin-left: 0;
-  -webkit-transition: margin-left 0.5s ease-in-out;
-  transition: margin-left 0.5s ease-in-out;
+/* NOTA: si tu JS aplica clases con nombres distintos, dime exactamente el nombre
+   y lo añado aquí. */
+
+/* estados visuales opcionales: cambia fondo cuando activo */
+body.enabled #sceneListToggle,
+#sceneListToggle.enabled {
+  background-color: transparent !important;
+}
+body.autorotate-enabled #autorotateToggle,
+#autorotateToggle.autorotate-enabled,
+#autorotateToggle.enabled {
+  background-color: transparent;
 }
 
-.mobile #sceneList {
-  padding-top: 50px;
+/* ============================
+   HOTSPOTS (link & tooltips)
+   ============================ */
+.hotspot { position: absolute; cursor: pointer; }
+
+/* Aumentar z-index para que los hotspots sean siempre visibles sobre el canvas/WebGL */
+.hotspot {
+  z-index: 3000;
+  -webkit-transform: translateZ(0); /* promover a capa compuesta en móviles */
 }
 
-#sceneList .scenes {
-  width: 100%;
-  background-color: rgb(17, 154, 127);
-  background-color: rgba(17, 154, 127, 0.75);
-}
-
-.mobile #sceneList {
-  width: 100%;
-  height: 100%;
-  left: -100%;
-}
-
-.mobile #sceneList.enabled {
-  margin-left: 100%;
-}
-
-.mobile #sceneList .scenes {
-  height: 100%;
-}
-
-#sceneList.enabled {
-  margin-left: 220px;
-}
-
-#sceneList .scene {
-  display: block;
-  width: 100%;
-  height: 30px;
-}
-
-.mobile #sceneList .scene {
-  height: 40px;
-}
-
-#sceneList .scene .text {
-  width: 100%;
-  height: 100%;
-  padding: 0 15px;
-  line-height: 30px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.mobile #sceneList .scene .text {
-  line-height: 40px;
-}
-
-.no-touch #sceneList .scene:hover {
-  background-color: rgb(222, 46, 73);
-  background-color: rgba(53, 181, 157, 0.85);
-}
-
-#sceneList .scene.current {
-  background-color: rgb(120, 20, 11);
-  background-color: rgba(120, 14, 53, 0.75);
-}
-
-/* Hide scene list when only a single scene exists */
-body.single-scene #sceneList, body.single-scene #sceneListToggle {
-  display: none;
-}
-
-/* Link hotspot */
-
-.link-hotspot {
+.hotspot.link-hotspot {
   width: 60px;
   height: 60px;
   margin-left: -30px;
   margin-top: -30px;
   opacity: 0.9;
-  -webkit-transition: opacity 0.2s;
-  transition: opacity 0.2s;
-  
+  transition: opacity .2s;
 }
 
-.no-touch .link-hotspot:hover {
-  opacity: 1;
-}
-
-.mobile .link-hotspot {
-  width: 70px;
-  height: 70px;
-}
-
-.link-hotspot-icon {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
+.no-touch .hotspot.link-hotspot:hover { opacity: 1; }
 
 .link-hotspot-tooltip {
   position: absolute;
   left: 100%;
-  top: 14px; /* ( 60 - (16 + 2*8) ) / 2 */
-
+  top: 14px;
   margin-left: 3px;
-
   font-size: 16px;
-
   max-width: 300px;
-
   padding: 8px 10px;
-
   border-radius: 5px;
-
-   background-color: rgb(120, 20, 11);
   background-color: rgba(120, 14, 53, 0.75);
-/* Color del fundo de la letra del link hotspot*/
-
   color: #fff;
-
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-
-  cursor: pointer;
-
   opacity: 0;
-
-  -ms-transform: translateX(-8px);
-  -webkit-transform: translateX(-8px);
-  transform: translateX(-8px);
-
-  -webkit-transition: -ms-transform 0.3s,
-                      -webkit-transform 0.3s,
-                      transform 0.3s,
-                      opacity 0.3s;
-  transition: -ms-transform 0.3s,
-              -webkit-transform 0.3s,
-              transform 0.3s,
-              opacity 0.3s;
-}
-
-.mobile .link-hotspot {
-  top: 19px; /* ( 70 - (16 + 2*8) ) / 2 */
-}
-
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
-  opacity: 1;
-  -ms-transform: translateX(0);
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-}
-
-/* Prevent tooltip from triggering */
-.link-hotspot-tooltip {
   pointer-events: none;
+  transform: translateX(-8px);
+  transition: transform .3s, opacity .3s;
 }
-.no-touch .link-hotspot:hover .link-hotspot-tooltip {
+
+.no-touch .hotspot.link-hotspot:hover .link-hotspot-tooltip {
+  opacity: 1;
+  transform: translateX(0);
   pointer-events: all;
 }
 
-/* Fallback mode without pointer-events (IE8-10) */
-.tooltip-fallback .link-hotspot-tooltip {
-  display: none;
-}
-.no-touch .tooltip-fallback .link-hotspot:hover .link-hotspot-tooltip {
-  display: block;
-}
-
-/* Info hotspot */
-
+/* ============================
+   INFO HOTSPOTS
+   ============================ */
 .info-hotspot {
   line-height: 1.2em;
   opacity: 0.9;
-  -webkit-transition: opacity 0.2s 0.2s;
-  transition: opacity 0.2s 0.2s;
-}
-
-.no-touch .info-hotspot:hover {
-  opacity: 1;
-  -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
 }
 
-.info-hotspot.visible {
-  opacity: 1;
-}
+.no-touch .info-hotspot:hover { opacity: 1; }
 
-.info-hotspot .info-hotspot-header {
+.info-hotspot-icon-wrapper {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color: rgb(77, 28, 48);
+  background-color: rgb(58, 68, 84);
   cursor: pointer;
-  -webkit-transition: width 0.3s ease-in-out 0.5s,
-                      border-radius 0.3s ease-in-out 0.5s;
-  transition: width 0.3s ease-in-out 0.5s,
-              border-radius 0.3s ease-in-out 0.5s;
+  transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 }
 
-.mobile .info-hotspot .info-hotspot-header {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-}
+.info-hotspot-icon { width: 90%; height: 90%; margin: 5%; }
 
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover {
-  width: 260px;
-  border-radius: 5px;
-  -webkit-transition: width 0.3s ease-in-out,
-                      border-radius 0.3s ease-in-out;
-  transition: width 0.3s ease-in-out,
-              border-radius 0.3s ease-in-out;
-}
-
-.desktop .info-hotspot.visible .info-hotspot-header,
-.desktop.no-touch .info-hotspot.visible .info-hotspot-header:hover {
-  width: 260px;
-  border-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  -webkit-transition: width 0.3s ease-in-out,
-                      border-radius 0.3s ease-in-out;
-  transition: width 0.3s ease-in-out,
-              border-radius 0.3s ease-in-out;
-}
-
-.info-hotspot .info-hotspot-icon-wrapper {
-  width: 40px;
-  height: 40px;
-}
-
-.mobile .info-hotspot .info-hotspot-icon-wrapper {
-  width: 50px;
-  height: 50px;
-}
-
-.info-hotspot .info-hotspot-icon {
-  width: 90%;
-  height: 90%;
-  margin: 5%;
-}
-
-.info-hotspot .info-hotspot-title-wrapper {
-  position: absolute;
-  left: 40px;
-  top: 0;
-  width: 0;
-  height: 40px;
-  padding: 0;
-  overflow: hidden;
-  -webkit-transition: width 0s 0.4s,
-                      padding 0s 0.4s;
-  transition: width 0s 0.4s,
-              padding 0s 0.4s;
-}
-
-.desktop .info-hotspot.visible .info-hotspot-title-wrapper,
-.desktop.no-touch .info-hotspot .info-hotspot-header:hover .info-hotspot-title-wrapper {
-  width: 220px;
-  padding: 0 5px;
-  -webkit-transition: width 0s 0.4s,
-                      padding 0s 0.4s;
-  transition: width 0s 0.4s,
-              padding 0s 0.4s;
-}
-
-.info-hotspot .info-hotspot-title-wrapper:before {
-  content: '';
-  display: inline-block;
-  vertical-align: middle;
-  height: 100%;
-}
-
-.info-hotspot .info-hotspot-title {
-  display: inline-block;
-  vertical-align: middle;
-
-  -moz-user-select: text;
-  -webkit-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-.info-hotspot .info-hotspot-close-wrapper {
-  position: absolute;
-  left: 260px;
-  top: 0;
-  height: 40px;
-  width: 40px;
-  border-top-right-radius: 5px;
-  background-color: rgb(120, 20, 11);
-  visibility: hidden;
-  -ms-transform: perspective(200px) rotateY(90deg);
-  -webkit-transform: perspective(200px) rotateY(90deg);
-  transform: perspective(200px) rotateY(90deg);
-  -ms-transform-origin: 0 50% 0;
-  -webkit-transform-origin: 0 50% 0;
-  transform-origin: 0 50% 0;
-  -webkit-transition: -ms-transform 0.3s 0.3s,
-                      -webkit-transform 0.3s 0.3s,
-                      transform 0.3s 0.3s,
-                      visibility 0s 0.6s;
-  transition: -ms-transform 0.3s 0.3s,
-              -webkit-transform 0.3s 0.3s,
-              transform 0.3s 0.3s,
-              visibility 0s 0.6s;
-}
-
-.desktop .info-hotspot.visible .info-hotspot-close-wrapper {
-  visibility: visible;
-  -ms-transform: perspective(200px) rotateY(0deg);
-  -webkit-transform: perspective(200px) rotateY(0deg);
-  transform: perspective(200px) rotateY(0deg);
-  -webkit-transition: -ms-transform 0.3s,
-                      -webkit-transform 0.3s,
-                      transform 0.3s,
-                      visibility 0s 0s;
-  transition: -ms-transform 0.3s,
-              -webkit-transform 0.3s,
-              transform 0.3s,
-              visibility 0s 0s;
-}
-
-.info-hotspot .info-hotspot-close-icon {
-  width: 70%;
-  height: 70%;
-  margin: 15%;
-}
-
-.info-hotspot .info-hotspot-text {
+.info-hotspot-text {
   position: absolute;
   width: 300px;
-  height: auto;
   max-height: 200px;
   top: 40px;
   left: 0;
   padding: 10px;
-  background-color: rgb(120, 20, 11);
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  background-color: rgb(58, 68, 84);
+  border-radius: 10px;
   overflow-y: auto;
   visibility: hidden;
-  /* rotate(90deg) causes transition flicker on Firefox 58 */
-  -ms-transform: perspective(200px) rotateX(-89.999deg);
-  -webkit-transform: perspective(200px) rotateX(-89.999deg);
-  transform: perspective(200px) rotateX(-89.999deg);
-  -ms-transform-origin: 50% 0 0;
-  -webkit-transform-origin: 50% 0 0;
-  transform-origin: 50% 0 0;
-  -webkit-transition: -ms-transform 0.3s,
-                      -webkit-transform 0.3s,
-                      transform 0.3s,
-                      visibility 0s 0.3s;
-  transition: -ms-transform 0.3s,
-              -webkit-transform 0.3s,
-              transform 0.3s,
-              visibility 0s 0.3s;
-
-  -moz-user-select: text;
-  -webkit-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-.desktop .info-hotspot.visible .info-hotspot-text {
-  visibility: visible;
-  -ms-transform: perspective(200px) rotateX(0deg);
-  -webkit-transform: perspective(200px) rotateX(0deg);
-  transform: perspective(200px) rotateX(0deg);
-  -webkit-transition: -ms-transform 0.3s 0.3s,
-                      -webkit-transform 0.3s 0.3s,
-                      transform 0.3s 0.3s,
-                      visibility 0s 0s;
-  transition: -ms-transform 0.3s 0.3s,
-              -webkit-transform 0.3s 0.3s,
-              transform 0.3s 0.3s,
-              visibility 0s 0s;
-}
-
-/* Info hotspot modal */
-
-.desktop .info-hotspot-modal {
-  display: none;
-}
-
-.info-hotspot-modal {
-  top: 0;
-  left: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 11000 !important;
-  background-color: rgba(0,0,0,.5);
-  line-height: 1.2em;
   opacity: 0;
-  visibility: hidden;
-  -webkit-transition: opacity 0.2s ease-in-out 0.5s,
-                      visibility 0s 0.7s;
-  transition: opacity 0.2s ease-in-out 0.5s,
-              visibility 0s 0.7s;
+  transition: opacity 0.3s, visibility 0s 0.3s;
 }
 
-.info-hotspot-modal.visible {
+.info-hotspot.visible .info-hotspot-text {
   opacity: 1;
   visibility: visible;
-  -webkit-transition: opacity 0.2s ease-in-out,
-                      visibility 0s 0s;
-  transition: opacity 0.2s ease-in-out,
-              visibility 0s 0s;
+  transition-delay: 0.5s;
 }
 
-.info-hotspot-modal .info-hotspot-header {
-  position: absolute;
-  top: 60px;
-  left: 10px;
-  right: 10px;
-  width: auto;
-  height: 50px;
-  background-color: rgb(103,115,131);
-  background-color: rgba(103,115,131,0.8);
-  opacity: 0;
-  -webkit-transition: opacity 0.3s ease-in-out 0.2s;
-  transition: opacity 0.3s ease-in-out 0.2s;
-}
-
-.info-hotspot-modal.visible .info-hotspot-header {
-  opacity: 1;
-  -webkit-transition: opacity 0.3s ease-in-out 0.2s;
-  transition: opacity 0.3s ease-in-out 0.2s;
-}
-
-.info-hotspot-modal .info-hotspot-icon-wrapper {
-  width: 50px;
-  height: 50px;
-}
-
-.info-hotspot-modal .info-hotspot-icon {
-  width: 90%;
-  height: 90%;
-  margin: 5%;
-}
-
-.info-hotspot-modal .info-hotspot-title-wrapper {
-  position: absolute;
-  top: 0;
-  left: 50px;
-  right: 50px;
-  width: auto;
-  height: 50px;
-  padding: 0 10px;
-}
-
-.info-hotspot-modal .info-hotspot-title-wrapper:before {
-  content: '';
-  display: inline-block;
-  vertical-align: middle;
-  height: 100%;
-}
-
-.info-hotspot-modal .info-hotspot-title {
-  display: inline-block;
-  vertical-align: middle;
-
-  -moz-user-select: text;
-  -webkit-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-.info-hotspot-modal .info-hotspot-close-wrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50px;
-  height: 50px;
-  background-color: rgb(78,88,104);
-  background-color: rgba(78,88,104,0.8);
-  cursor: pointer;
-}
-
-.info-hotspot-modal .info-hotspot-close-icon {
-  width: 70%;
-  height: 70%;
-  margin: 15%;
-}
-
-.info-hotspot-modal .info-hotspot-text {
-  position: absolute;
-  top: 110px;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-  padding: 10px;
-  background-color: rgb(58,68,84);
-  background-color: rgba(58,68,84,0.8);
-  overflow-y: auto;
-  opacity: 0;
-  -webkit-transition: opacity 0.3s ease-in-out;
-  transition: opacity 0.3s ease-in-out;
-
-  -moz-user-select: text;
-  -webkit-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-.info-hotspot-modal.visible .info-hotspot-text {
-  opacity: 1;
-  -webkit-transition: opacity 0.3s ease-in-out 0.4s;
-  transition: opacity 0.3s ease-in-out 0.4s;
-}
-
-/* View control buttons */
-
+/* ============================
+   VIEW CONTROL BUTTONS (hover & active)
+   ============================ */
 .viewControlButton {
   display: none;
   position: absolute;
@@ -789,45 +350,100 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   width: 40px;
   height: 40px;
   padding: 5px;
-  background-color: rgb(103,115,131);
   background-color: rgba(103,115,131,0.8);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform .12s ease, background-color .12s ease, box-shadow .12s ease;
+}
+body.view-control-buttons .viewControlButton { display: block; }
+
+/* Hover only on non-touch to avoid mobile glitches */
+.no-touch .viewControlButton:hover {
+  background-color: rgba(120,14,53,0.85);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+}
+.no-touch .viewControlButton:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
 }
 
-body.view-control-buttons .viewControlButton {
-  display: block;
+/* mobile adjustments for touch targets */
+.mobile .viewControlButton {
+  width: 48px;
+  height: 48px;
+  padding: 6px;
 }
 
-/* Hide controls when width is too small */
-@media (max-width: 600px) {
-  body.view-control-buttons .viewControlButton {
-    display: none;
+/* icon inside view control */
+.viewControlButton .icon { position: absolute; inset: 5px; }
+
+/* center offsets */
+.viewControlButton-1 { margin-left: -145px; }
+.viewControlButton-2 { margin-left: -95px; }
+.viewControlButton-3 { margin-left: -45px; }
+.viewControlButton-4 { margin-left: 5px; }
+.viewControlButton-5 { margin-left: 55px; }
+.viewControlButton-6 { margin-left: 105px; }
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 500px) {
+  #sceneList {
+    width: 100%;
+    left: -100%;
+  }
+  #sceneList.enabled { left: 0; }
+
+  #titleBar {
+    height: 50px;
+  }
+
+  #sceneListToggle,
+  #autorotateToggle {
+    width: 50px;
+    height: 50px;
+    padding: 6px;
+  }
+
+  #sceneListToggle .icon,
+  #autorotateToggle .icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon {
+    filter: brightness(0) invert(1);
+  }
+
+  .info-hotspot.visible {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 10000;
+  }
+
+  .info-hotspot.visible .info-hotspot-text {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .info-hotspot-title {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  /* hide view controls on very small screens (optional) */
+  @media (max-width: 360px) {
+    body.view-control-buttons .viewControlButton { display: none; }
   }
 }
 
-.viewControlButton .icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 30px;
-  height: 30px;
-}
-
-/* Center is at margin-left: -20px */
-.viewControlButton-1 {
-  margin-left: -145px;
-}
-.viewControlButton-2 {
-  margin-left: -95px;
-}
-.viewControlButton-3 {
-  margin-left: -45px;
-}
-.viewControlButton-4 {
-  margin-left: 5px;
-}
-.viewControlButton-5 {
-  margin-left: 55px;
-}
-.viewControlButton-6 {
-  margin-left: 105px;
-}
+/* ============================
+   UTIL / STATES
+   ============================ */
+body.single-scene #sceneList,
+body.single-scene #sceneListToggle { display: none; }
